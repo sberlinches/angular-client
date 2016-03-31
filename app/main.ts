@@ -1,5 +1,7 @@
-import {bootstrap} from 'angular2/platform/browser'
-import {AppComponent} from './app.component'
-import {LoggerService} from "./logger.service";
+import { bootstrap } from 'angular2/platform/browser'
+import { ROUTER_PROVIDERS } from 'angular2/router';
 
-bootstrap(AppComponent, [LoggerService]);
+import { AppComponent } from './app.component'
+import { LoggerService } from "./logger.service";
+
+bootstrap(AppComponent, [ROUTER_PROVIDERS, LoggerService]);
