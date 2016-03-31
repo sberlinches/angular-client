@@ -3,8 +3,9 @@ import { Router } from 'angular2/router';
 
 @Component({
     // To do
-    template: `New hero`
+    templateUrl: 'app/hero-new.component.html'
 })
 
 export class HeroNewComponent {
+    title = 'New hero';
 }
