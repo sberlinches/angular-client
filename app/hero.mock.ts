@@ -1,6 +1,6 @@
-import {Hero} from './hero';
+import { HeroInterface } from './hero.interface';
 
-export var HEROES: Hero[] = [
+export var HeroMock: HeroInterface[] = [
     {"id": 11, "name": "Mr. Nice"},
     {"id": 12, "name": "Narco"},
     {"id": 13, "name": "Bombasto"},

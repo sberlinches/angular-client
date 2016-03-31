@@ -2,8 +2,9 @@ import { Component } from 'angular2/core';
 import { RouteConfig, ROUTER_DIRECTIVES } from 'angular2/router';
 
 import { HeroService } from './hero.service';
-import { HeroesComponent } from './heroes.component';
+
 import { DashboardComponent } from './dashboard.component';
+import { HeroListComponent } from './hero-list.component';
 import { HeroDetailComponent } from './hero-detail.component';
 import { HeroNewComponent } from './hero-new.component';
 
@@ -24,11 +25,11 @@ import { HeroNewComponent } from './hero-new.component';
     },
     {
         path: '/heroes',
-        name: 'Heroes',
-        component: HeroesComponent
+        name: 'HeroList',
+        component: HeroListComponent
     },
     {
-        path: '/detail/:id',
+        path: '/hero/:id',
         name: 'HeroDetail',
         component: HeroDetailComponent
     },

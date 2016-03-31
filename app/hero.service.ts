@@ -1,8 +1,8 @@
 import { Injectable } from 'angular2/core';
 
 import { LoggerService } from './logger.service';
-import { HEROES } from './mock-heroes';
-import { Hero } from './hero';
+import { HeroMock } from './hero.mock';
+import { HeroInterface } from './hero.interface';
 
 @Injectable()
 export class HeroService {
@@ -12,13 +12,13 @@ export class HeroService {
     ) {}
 
     getHeroes() {
-        this._loggerService.log(`Heroes in DB: ${HEROES.length}`);
-        return Promise.resolve(HEROES);
+        this._loggerService.log(`Heroes in DB: ${HeroMock.length}`);
+        return Promise.resolve(HeroMock);
     }
 
     getHero(id: number) {
         this._loggerService.log(`Hero ID: ${id}`);
-        return Promise.resolve(HEROES).then(
+        return Promise.resolve(HeroMock).then(
             heroes => heroes.filter(hero => hero.id === id)[0]
         );
     }
