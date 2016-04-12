@@ -1,7 +1,10 @@
-<h1>{{title}}</h1>
-<nav>
-    <a [routerLink]="['Dashboard']">Dashboard</a>
-    <a [routerLink]="['HeroList']">List of heroes</a>
-    <a [routerLink]="['HeroNew']">New Hero</a>
-</nav>
+<div class="page-header">
+    <h1><a [routerLink]="['Dashboard']">Angular 2 - CRUD</a></h1>
+</div>
+
+<ul class="nav nav-tabs" role="navigation">
+    <li role="presentation" class="active"><a [routerLink]="['Dashboard']">Dashboard</a></li>
+    <li><a [routerLink]="['UserList']">Users</a></li>
+</ul>
+
 <router-outlet></router-outlet>
