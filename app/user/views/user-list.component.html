@@ -2,7 +2,11 @@
     <h2>List of users</h2>
 </div>
 
-<a [routerLink]="['UserNew']">New user</a>
+<ul>
+    <li><a [routerLink]="['UserNew']">New user</a></li>
+    <li *ngIf="selectedUser"><a (click)="gotoDetail()">Edit {{ selectedUser.firstName }}</a></li>
+</ul>
+
 
 <div class="table-responsive">
     <table class="table table-condensed table-hover">
@@ -28,7 +32,3 @@
 </div>
 
 
-<div *ngIf="selectedUser">
-    <h3>{{selectedUser.name | uppercase}}</h3>
-    <button (click)="gotoDetail()">View Details</button>
-</div>
