@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/components/dashboard.component';
 import { UserListComponent } from './user/components/user-list.component';
 import { UserDetailComponent } from './user/components/user-detail.component';
 import { UserNewComponent } from './user/components/user-new.component';
+import { TestComponent } from './test/components/test.component';
 
 @Component({
     selector: 'app',
@@ -37,6 +38,11 @@ import { UserNewComponent } from './user/components/user-new.component';
         path: '/user/new',
         name: 'UserNew',
         component: UserNewComponent
+    },
+    {
+        path: '/test',
+        name: 'Test',
+        component: TestComponent
     },
 ])
 
