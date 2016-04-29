@@ -1,0 +1,28 @@
+<div class="page-header">
+    <h2>TODO</h2>
+</div>
+
+<p [contentEditable]='true'>Esto es un parrafo con el contentEditable</p>
+
+<p>El input esta identificado con una referencia, asociado a los botones</p>
+<form id="form_a">
+    <input type="text" #todoInput placeholder="Write and Click">
+    <button (click)="printValue($event, todoInput.value)">Print event and input value</button>
+    <button (click)="addValue(todoInput.value)">Add value to TODO array</button>
+</form>
+<hr />
+
+<p>Tengo que investigar como hacer q los buttons no llamen al evento submit, es una mierda</p>
+<form id="form_b" (submit)="onSubmit()">
+    <input type="text" [(ngModel)]="todoModel.title" placeholder="Write and Click">
+    <input type="submit" value="Add {{ todoModel.title }}">
+    <button>Esto no debería de lanzar el submit</button>
+</form>
+<hr />
+
+<todo-select-status (select)="statusValue = $event"></todo-select-status>
+<todo-input-filter (input)="filterValue = $event"></todo-input-filter>
+<todo-list
+        [selectStatusValue]="statusValue"
+        [inputFilterValue]="filterValue"
+></todo-list>

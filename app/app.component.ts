@@ -1,20 +1,26 @@
 import { Component } from 'angular2/core';
 import { RouteConfig, ROUTER_DIRECTIVES } from 'angular2/router';
-
-import { UserService } from './user/services/user.service';
-
+// Services
+import { UserService } from "./user/services/user.service";
+import { StatusService } from './todo/services/status.service';
+import { TodoService } from './todo/services/todo.service';
+// Components
 import { DashboardComponent } from './dashboard/components/dashboard.component';
 import { UserListComponent } from './user/components/user-list.component';
 import { UserDetailComponent } from './user/components/user-detail.component';
 import { UserNewComponent } from './user/components/user-new.component';
-import { TestComponent } from './test/components/test.component';
+import { TodoComponent } from './todo/components/todo.component';
 
 @Component({
     selector: 'app',
     templateUrl: 'app/app.component.html',
     styleUrls: ['app/app.component.css'],
     directives: [ROUTER_DIRECTIVES],
-    providers: [UserService]
+    providers: [
+        UserService,
+        StatusService,
+        TodoService
+    ]
 })
 
 @RouteConfig([
@@ -40,11 +46,10 @@ import { TestComponent } from './test/components/test.component';
         component: UserNewComponent
     },
     {
-        path: '/test',
-        name: 'Test',
-        component: TestComponent
+        path: '/todo',
+        name: 'Todo',
+        component: TodoComponent
     },
 ])
 
-export class AppComponent {
-}
+export class AppComponent {}

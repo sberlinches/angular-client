@@ -1,0 +1,7 @@
+<div class="form-group">
+    <select class="form-control" #selectStatus (change)="select.emit(selectStatus.value)">
+        <option *ngFor="#status of statuses" value="{{ status.value }}">
+            {{ status.title }}
+        </option>
+    </select>
+</div>
