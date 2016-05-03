@@ -3,5 +3,5 @@
 </div>
 
 <div class="row">
-    <div *ngFor="#user of users" (click)="gotoDetail(user)" class="col-md-3">{{user.firstName}}</div>
+    <div *ngFor="let user of users" (click)="gotoDetail(user)" class="col-md-3">{{user.firstName}}</div>
 </div>
