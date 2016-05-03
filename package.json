@@ -1,28 +1,32 @@
 {
-  "name": "angular2-CRUD",
+  "name": "Fun_with_angular2",
   "version": "1.0.0",
+  "description": "Fun with angular2",
   "scripts": {
-    "start": "concurrently \"npm run tsc:w\" \"npm run lite\" ",    
+    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "lite": "lite-server",
+    "postinstall": "typings install",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "lite": "lite-server",
-    "typings": "typings",
-    "postinstall": "typings install" 
+    "typings": "typings"
   },
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sberlinches/angular2.git"
+  },
   "dependencies": {
-    "angular2": "2.0.0-beta.13",
-    "systemjs": "0.19.24",
-    "es6-promise": "^3.0.2",
+    "angular2": "2.0.0-beta.17",
+    "systemjs": "0.19.26",
     "es6-shim": "^0.35.0",
     "reflect-metadata": "0.1.2",
-    "rxjs": "5.0.0-beta.2",
-    "zone.js": "^0.6.6"
+    "rxjs": "5.0.0-beta.6",
+    "zone.js": "0.6.12"
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
-    "lite-server": "^2.1.0",
-    "typescript": "^1.8.7",
-    "typings":"^0.7.5"
+    "lite-server": "^2.2.0",
+    "typescript": "^1.8.10",
+    "typings":"^0.8.1"
   }
 }
