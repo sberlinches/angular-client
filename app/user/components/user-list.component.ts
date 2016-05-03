@@ -1,9 +1,9 @@
 import { Component, OnInit } from 'angular2/core';
 import { Router, ROUTER_DIRECTIVES } from 'angular2/router';
 // Services
-import { UserInterface } from './../services/interfaces/user.interface';
-// Interfaces
 import { UserService } from './../services/user.service';
+// Interfaces
+import { UserInterface } from './../services/interfaces/user.interface';
 // Components
 import { UserDetailComponent } from './user-detail.component';
 
@@ -24,7 +24,7 @@ export class UserListComponent implements OnInit {
         private userService: UserService
     ) {}
 
-    //
+    // When the component is ready
     ngOnInit() {
         this.getUsers();
     }

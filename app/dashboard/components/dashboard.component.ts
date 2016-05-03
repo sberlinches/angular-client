@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
         private userService: UserService
     ) {}
 
+    // When the component is ready
     ngOnInit() {
         this.getUsers();
     }

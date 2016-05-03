@@ -20,6 +20,7 @@ export class UserDetailComponent {
         private routeParams: RouteParams
     ) {}
 
+    // When the component is ready
     ngOnInit() {
         this.getUser();
     }
