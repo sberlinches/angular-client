@@ -1,9 +1,10 @@
 import { Component, OnInit } from 'angular2/core';
 import { Router, ROUTER_DIRECTIVES } from 'angular2/router';
-
+// Services
 import { UserInterface } from './../services/interfaces/user.interface';
+// Interfaces
 import { UserService } from './../services/user.service';
-
+// Components
 import { UserDetailComponent } from './user-detail.component';
 
 @Component({
@@ -13,21 +14,25 @@ import { UserDetailComponent } from './user-detail.component';
 })
 
 export class UserListComponent implements OnInit {
+
+    // Fill the variable with the interface
     users: UserInterface[];
     selectedUser: UserInterface;
 
     constructor(
-        private _router: Router,
-        private _userService: UserService) {
+        private router: Router,
+        private userService: UserService
+    ) {}
+
+    //
+    ngOnInit() {
+        this.getUsers();
     }
 
     getUsers() {
-        this._userService.getUsers()
+        // Fill the variable with data
+        this.userService.getUsers()
             .then(users => this.users = users);
-    }
-
-    ngOnInit() {
-        this.getUsers();
     }
 
     onSelect(user: UserInterface) {
@@ -35,6 +40,6 @@ export class UserListComponent implements OnInit {
     }
 
     gotoDetail() {
-        this._router.navigate(['UserDetail', { id: this.selectedUser.id }]);
+        this.router.navigate(['UserDetail', { id: this.selectedUser.id }]);
     }
 }

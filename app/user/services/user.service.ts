@@ -1,22 +1,25 @@
 import { Injectable } from 'angular2/core';
-
+// Services
 import { LoggerService } from './../../logger.service';
+// Mocks(DB data)
 import { UserMock } from './mocks/user.mock';
 
 @Injectable()
 export class UserService {
 
     constructor(
-        private _loggerService: LoggerService
+        private loggerService: LoggerService
     ) {}
 
     getUsers() {
-        this._loggerService.log(`Users in DB: ${UserMock.length}`);
+        this.loggerService.log(`Users in DB: ${UserMock.length}`);
+
         return Promise.resolve(UserMock);
     }
 
     getUser(id: number) {
-        this._loggerService.log(`User ID: ${id}`);
+        this.loggerService.log(`User ID: ${id}`);
+
         return Promise.resolve(UserMock).then(
             users => users.filter(user => user.id === id)[0]
         );
