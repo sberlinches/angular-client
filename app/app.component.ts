@@ -1,5 +1,5 @@
-import { Component } from 'angular2/core';
-import { RouteConfig, ROUTER_DIRECTIVES } from 'angular2/router';
+import { Component } from '@angular/core';
+import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 // Services
 import { UserService } from "./user/services/user.service";
 import { StatusService } from './todo/services/status.service';
@@ -17,6 +17,7 @@ import { TodoComponent } from './todo/components/todo.component';
     styleUrls: ['app/app.component.css'],
     directives: [ROUTER_DIRECTIVES],
     providers: [
+        ROUTER_PROVIDERS,
         UserService,
         StatusService,
         TodoService

@@ -1,5 +1,5 @@
-import { Component, OnInit } from 'angular2/core';
-import { Router, ROUTER_DIRECTIVES } from 'angular2/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 // Services
 import { UserService } from './../services/user.service';
 // Interfaces
@@ -10,7 +10,10 @@ import { UserDetailComponent } from './user-detail.component';
 @Component({
     selector: 'user-list',
     templateUrl: 'app/user/views/user-list.component.html',
-    directives: [ROUTER_DIRECTIVES],
+    directives: [
+        ROUTER_DIRECTIVES,
+        UserDetailComponent
+    ],
 })
 
 export class UserListComponent implements OnInit {
