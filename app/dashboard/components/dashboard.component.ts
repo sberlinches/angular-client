@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 // Services
 import { UserService } from './../../user/services/user.service';
-// Interfaces
-import { UserInterface } from './../../user/services/interfaces/user.interface';
+// Models
+import { UserModel } from './../../user/services/models/user.model';
 
 @Component({
     selector: 'dashboard',
@@ -12,8 +12,8 @@ import { UserInterface } from './../../user/services/interfaces/user.interface';
 
 export class DashboardComponent implements OnInit {
 
-    // Fill the variable with the interface
-    users: UserInterface[] = [];
+    // Fill the variable with the model
+    users: UserModel[] = [];
 
     constructor(
         private router: Router,
@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
             .then(users => this.users = users.slice(0,4));
     }
 
-    gotoDetail(user: UserInterface) {
+    gotoDetail(user: UserModel) {
         let link = ['UserDetail', { id: user.id }];
         this.router.navigate(link);
     }

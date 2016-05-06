@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 // Services
 import { UserService } from './../services/user.service';
-// Interfaces
-import { UserInterface } from './../services/interfaces/user.interface';
+// Models
+import { UserModel } from './../services/models/user.model';
 // Components
 import { UserDetailComponent } from './user-detail.component';
 
@@ -19,8 +19,8 @@ import { UserDetailComponent } from './user-detail.component';
 export class UserListComponent implements OnInit {
 
     // Fill the variable with the interface
-    users: UserInterface[];
-    selectedUser: UserInterface;
+    users: UserModel[];
+    selectedUser: UserModel;
 
     constructor(
         private router: Router,
@@ -38,7 +38,7 @@ export class UserListComponent implements OnInit {
             .then(users => this.users = users);
     }
 
-    onSelect(user: UserInterface) {
+    onSelect(user: UserModel) {
         this.selectedUser = user;
     }
 

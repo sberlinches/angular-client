@@ -3,7 +3,7 @@ import { RouteParams } from '@angular/router-deprecated';
 // Services
 import { UserService } from './../services/user.service';
 // Interfaces
-import { UserInterface } from './../services/interfaces/user.interface';
+import { UserModel } from './../services/models/user.model';
 
 @Component({
     selector: 'user-detail',
@@ -13,7 +13,7 @@ import { UserInterface } from './../services/interfaces/user.interface';
 export class UserDetailComponent {
 
     // Fill the variable with the interface
-    user: UserInterface;
+    user: UserModel;
 
     constructor(
         private userService: UserService,

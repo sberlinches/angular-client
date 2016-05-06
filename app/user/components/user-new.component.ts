@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/common';
 // Interfaces
-import { UserInterface } from './../services/interfaces/user.interface';
+import { UserModel } from './../services/models/user.model';
 
 @Component({
     selector: 'user-new',
