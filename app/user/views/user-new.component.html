@@ -2,15 +2,24 @@
     <h2>New user</h2>
 </div>
 
-<!-- By setting ngControl we create a directive that can tell if the user touched the control,
-if the value changed, or if the value became invalid.-->
+<!--
+Angular did. Angular creates and attaches an NgForm directive to the <form> tag automatically.
+
+The NgForm directive supplements the form element with additional features. It holds the controls we created for the
+elements with ngControl attributes and monitors their properties including their validity. It also has its own valid
+property which is true only if every contained control is valid.
+-->
 
 <!-- Folks who don't like using the # character can use its canonical alternative, the ref- prefix.
 For example, we can declare the our phone variable using either #phone or ref-phone. -->
-<form>
 
+<form *ngIf="active" (ngSubmit)="onSubmit()" #newUser="ngForm">
     <div class="form-group">
         <label for="firstName">First Name</label>
+        <!--
+        By setting ngControl we create a directive that can tell if the user touched the control, if the value changed,
+        or if the value became invalid.
+        -->
         <input id="firstName" type="text" class="form-control" required
                [(ngModel)]="user.firstName"
                ngControl="firstName"
@@ -47,5 +56,9 @@ For example, we can declare the our phone variable using either #phone or ref-ph
             <option *ngFor="let country of countries" [value]="country.value">{{ country.title }}</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-default" [disabled]="!newUser.form.valid">Submit</button>
+    <button type="button" class="btn btn-default" (click)="newUser()">New user</button>
 </form>
+
+<!-- TODO: Remove this when we're done -->
+{{diagnostic}}
