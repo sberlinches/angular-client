@@ -8,5 +8,4 @@ export class UserModel {
         public country?:    string,
         public birthday?:   string
     ) {}
-
 }
