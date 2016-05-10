@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
 // Services
 import { UserService } from './../services/user.service';
-// Interfaces
-import { UserModel } from './../services/models/user.model';
+// Models
+import { UserModel } from './../models/user.model';
 
 @Component({
     selector: 'user-detail',

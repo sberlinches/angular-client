@@ -3,7 +3,7 @@ import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 // Services
 import { UserService } from './../services/user.service';
 // Models
-import { UserModel } from './../services/models/user.model';
+import { UserModel } from './../models/user.model';
 // Components
 import { UserDetailComponent } from './user-detail.component';
 

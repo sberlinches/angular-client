@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 // Services
 import { LoggerService } from './../../shared/services/logger.service';
 // Mocks(DB data)
-import { UserMock } from './mocks/user.mock';
+import { UserMock } from '../mocks/user.mock';
 
 @Injectable()
 export class UserService {

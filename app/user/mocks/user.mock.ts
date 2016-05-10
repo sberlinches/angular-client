@@ -1,4 +1,4 @@
-import { UserModel } from './../models/user.model';
+import { UserModel } from './../../models/user.model';
 
 export var UserMock: UserModel[] = [
     {'id': 1, 'firstName': 'name1', 'lastName': 'last1', 'email': 'name1@example.com', 'country': 'country', 'birthday': '01/01/1980'},

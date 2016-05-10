@@ -3,7 +3,7 @@ import { Router } from '@angular/router-deprecated';
 // Services
 import { UserService } from './../../user/services/user.service';
 // Models
-import { UserModel } from './../../user/services/models/user.model';
+import { UserModel } from './../../user/models/user.model';
 
 @Component({
     selector: 'dashboard',
