@@ -1,8 +1,8 @@
-import { Component } from 'angular2/core';
+import { Component } from '@angular/core';
 // Services
 import { TodoService } from './../services/todo.service';
 // Models
-import { TodoModel } from './../services/todo.model';
+import { TodoModel } from './../models/todo.model';
 // Components
 import { TodoListComponent } from './todo-list.component';
 import { TodoSelectStatusComponent } from './todo-select-status.component';
@@ -16,7 +16,7 @@ import { TodoInputFilterComponent } from './todo-input-filter.component';
 
 export class TodoComponent {
 
-    todoModel: TodoModel = new TodoModel();
+    //todoModel: TodoModel = new TodoModel();
 
     /*
     * Injecting a service
@@ -32,13 +32,13 @@ export class TodoComponent {
     }
 
     addValue(value) {
-        this.todoService.addTodo(value);
+        /*this.todoService.addTodo(value);
         console.log(this.todoService.todos);
         // Refesh the array
-        this.todoModel = new TodoModel();
+        this.todoModel = new TodoModel();*/
     }
 
     onSubmit() {
-        this.addValue(this.todoModel);
+        //this.addValue(this.todoModel);
     }
 }

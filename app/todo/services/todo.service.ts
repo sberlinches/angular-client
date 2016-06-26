@@ -1,27 +1,25 @@
-import { Injectable } from 'angular2/core';
+import { Injectable } from '@angular/core';
+// Services
+import { LoggerService } from './../../shared/services/logger.service';
 // Models
-import { TodoModel } from './todo.model';
+import { TodoModel } from './../models/todo.model';
+// Mocks(DB data)
+import { TodoMock } from './../mocks/todo.mock';
 
 @Injectable()
 export class TodoService{
 
-    private todos:[TodoModel] = [
-        new TodoModel('eat', 'done'),
-        new TodoModel('sleep', 'done'),
-        new TodoModel('code', 'pending'),
-        new TodoModel('Code again', 'pending'),
-        new TodoModel('swimming', 'done'),
-        new TodoModel('die', 'pending'),
-        new TodoModel('Get laid', 'pending'),
-    ];
+    constructor(
+        private loggerService: LoggerService
+    ) {}
 
     addTodo(todo:TodoModel) {
-        this.todos = [...this.todos, todo];
+        /*this.todos = [...this.todos, todo];*/
     }
 
     updateTodoStatus(todo:TodoModel) {
 
-        // TODO Comment here
+        /*// TODO Comment here
         const status = todo.status == 'done' ? 'pending' : 'done';
         const toggleStatus = Object.assign({}, todo, {status});
 
@@ -32,6 +30,6 @@ export class TodoService{
             ...this.todos.slice(0, i),
             toggleStatus,
             ...this.todos.slice(i + 1)
-        ];
+        ];*/
     }
 }

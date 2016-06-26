@@ -1,8 +1,8 @@
-import { Component, Output, EventEmitter } from "angular2/core";
+import { Component, Output, EventEmitter } from '@angular/core';
 // Services
 import { StatusService } from './../services/status.service';
 // Interfaces
-import { StatusInterface } from './../services/interfaces/status.interface';
+import { StatusModel } from './../models/status.model';
 
 @Component({
     selector: 'todo-select-status',
@@ -15,7 +15,7 @@ export class TodoSelectStatusComponent {
     @Output() select = new EventEmitter();
 
     // Fill the variable with the interface
-    statuses: StatusInterface[];
+    statuses: StatusModel[];
 
     constructor(
         private statusService:StatusService

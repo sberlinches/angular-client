@@ -1,8 +1,8 @@
-import { Injectable } from 'angular2/core';
+import { Injectable } from '@angular/core';
 // Services
-import { LoggerService } from './../../logger.service';
+import { LoggerService } from './../../shared/services/logger.service';
 // Mocks(DB data)
-import { StatusMock } from './mocks/status.mock';
+import { StatusMock } from './../mocks/status.mock';
 
 @Injectable()
 export class StatusService {
