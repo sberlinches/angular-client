@@ -12,23 +12,25 @@ import { UserModel } from './../../user/models/user.model';
 
 export class DashboardComponent implements OnInit {
 
-    // Fill the variable with the model
-    users: UserModel[] = [];
+    errorMessage: string;
+    users: UserModel[];
 
     constructor(
         private router: Router,
         private userService: UserService
     ) {}
-
-    // When the component is ready
+    
     ngOnInit() {
         this.getUsers();
     }
 
     getUsers() {
-        // Fill the variable with data
-        this.userService.getUsers()
-            .then(users => this.users = users.slice(0,4));
+        this.userService
+            .getUsers()
+            .subscribe(
+                users => this.users = users,
+                error => this.errorMessage = <any>error
+            );
     }
 
     gotoDetail(user: UserModel) {

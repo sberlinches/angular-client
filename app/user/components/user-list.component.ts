@@ -18,7 +18,7 @@ import { UserDetailComponent } from './user-detail.component';
 
 export class UserListComponent implements OnInit {
 
-    // Fill the variable with the interface
+    errorMessage: string;
     users: UserModel[];
     selectedUser: UserModel;
 
@@ -34,8 +34,16 @@ export class UserListComponent implements OnInit {
 
     getUsers() {
         // Fill the variable with data
-        this.userService.getUsers()
-            .then(users => this.users = users);
+        // Promise
+        /*this.userService.getUsers()
+            .then(users => this.users = users);*/
+        // Observable
+        this.userService
+            .getUsers()
+            .subscribe(
+                users => this.users = users,
+                error => this.errorMessage = <any>error
+            );
     }
 
     onSelect(user: UserModel) {

@@ -12,7 +12,7 @@ import { UserModel } from './../models/user.model';
 
 export class UserDetailComponent {
 
-    // Fill the variable with the interface
+    errorMessage: string;
     user: UserModel;
 
     constructor(
@@ -28,10 +28,17 @@ export class UserDetailComponent {
     getUser() {
         // Get params from the route
         let id = +this.routeParams.get('id');
-
         // Fill the variable with data
-        this.userService.getUser(id)
-            .then(user => this.user = user)
+        // Promise
+        /*this.userService.getUser(id)
+            .then(user => this.user = user)*/
+        // Observable
+        this.userService
+            .getUser(id)
+            .subscribe(
+                user => this.user = user,
+                error => this.errorMessage = <any>error
+            );
     }
 
     goBack() {

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
+// RxJS Observable operators
+import './rxjs-operators';
 // Services
 import { UserService } from "./user/services/user.service";
 import { StatusService } from './todo/services/status.service';
