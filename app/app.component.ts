@@ -10,6 +10,7 @@ import { TodoService } from './todo/services/todo.service';
 import { DashboardComponent } from './dashboard/components/dashboard.component';
 import { UserListComponent } from './user/components/user-list.component';
 import { UserDetailComponent } from './user/components/user-detail.component';
+import { UserEditComponent } from './user/components/user-edit.component';
 import { UserNewComponent } from './user/components/user-new.component';
 import { TodoComponent } from './todo/components/todo.component';
 
@@ -42,6 +43,11 @@ import { TodoComponent } from './todo/components/todo.component';
         path: '/user/:id',
         name: 'UserDetail',
         component: UserDetailComponent
+    },
+    {
+        path: '/user/edit/:id',
+        name: 'UserEdit',
+        component: UserEditComponent
     },
     {
         path: '/user/new',

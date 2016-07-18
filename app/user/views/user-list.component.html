@@ -4,7 +4,7 @@
 
 <ul>
     <li><a [routerLink]="['UserNew']">New user</a></li>
-    <li *ngIf="selectedUser"><a (click)="gotoDetail()">Edit {{ selectedUser.firstName }}</a></li>
+    <li *ngIf="selectedUser"><a (click)="goToUserEdit()">Edit {{ selectedUser.firstName }}</a></li>
 </ul>
 
 
@@ -12,10 +12,13 @@
     <table class="table table-condensed table-hover">
         <thead>
             <tr>
-                <th>#</th>
-                <th>First name</th>
-                <th>Last name</th>
+                <th>ID</th>
+                <th>Username</th>
                 <th>Email</th>
+                <th>Full name</th>
+                <th>Birth At</th>
+                <th>Country</th>
+                <th>Created At</th>
             </tr>
         </thead>
         <tbody>
@@ -23,9 +26,12 @@
                 [class.active]="user === selectedUser"
                 (click)="onSelect(user)">
                 <th>{{ user.id }}</th>
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
+                <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
+                <td>{{ user.fullName }}</td>
+                <td>{{ user.birthAt | date: 'medium' }}</td>
+                <td>{{ user.country?.name }}</td>
+                <td>{{ user.createdAt | date: 'medium' }}</td>
             </tr>
         </tbody>
     </table>

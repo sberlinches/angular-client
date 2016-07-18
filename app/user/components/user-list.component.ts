@@ -50,7 +50,7 @@ export class UserListComponent implements OnInit {
         this.selectedUser = user;
     }
 
-    gotoDetail() {
-        this.router.navigate(['UserDetail', { id: this.selectedUser.id }]);
+    goToUserEdit() {
+        this.router.navigate(['UserEdit', { id: this.selectedUser.id }]);
     }
 }
