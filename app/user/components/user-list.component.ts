@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import {I18nPluralPipe, NgLocalization} from "@angular/common";
 // Services
 import { UserService } from './../services/user.service';
 // Models
@@ -11,6 +12,13 @@ import { TimeBetweenPipe } from './../../shared/pipes/timeBetween.pipe';
 // Functions
 import { DateFunctions } from './../../shared/functions/date.functions';
 
+class TimeLocalization extends NgLocalization {
+    getPluralCategory(value: any) {
+        if(value > 1) {
+            return 'other';
+        }
+    }
+}
 
 @Component({
     selector: 'user-list',
@@ -20,9 +28,11 @@ import { DateFunctions } from './../../shared/functions/date.functions';
         UserDetailComponent
     ],
     pipes: [
+        I18nPluralPipe,
         TimeBetweenPipe
     ],
     providers: [
+        { provide: NgLocalization, useClass: TimeLocalization },
         DateFunctions // TimeBetweenPipe dependency
     ]
 })
@@ -34,6 +44,10 @@ export class UserListComponent implements OnInit {
     selectedUser: UserModel;
     todayDate: Date = new Date();
     ageFormat: string = 'year';
+    timeMapping: any = {
+        '=1': '# year',
+        'other': '# years'
+    };
 
     constructor(
         private router: Router,
