@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { CityModel } from '../models/city.model';
 
 @Injectable()
-export class UserService {
+export class CityService {
 
     // TODO: External config file
     private domainUrl = 'https://localhost:3443';
