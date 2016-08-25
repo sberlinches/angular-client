@@ -1,49 +1,139 @@
-{{diagnostic}}
+{{ diagnostic }}
 
-<form *ngIf="user">
+<form #userEditForm="ngForm" *ngIf="user">
+
     <div class="page-header">
-        <h2>{{ user.lastName }}, {{ user.firstName }}</h2>
+        <h2>{{ user.fullName }}</h2>
     </div>
 
     <div class="form-group form-group-sm">
         <label for="id">ID</label>
-        <input class="form-control" id="id" type="text" placeholder="{{ user.id }}" disabled>
+        <input type="text"
+               id="id"
+               name="id"
+               class="form-control"
+               value="{{ user.id }}"
+               disabled
+               required>
     </div>
     <div class="form-group form-group-sm">
-        <label for="firstName">First name</label>
-        <input type="text" class="form-control" id="firstName" required
-               [(ngModel)]="user.firstName" name="firstName">
-    </div>
-    <div class="form-group form-group-sm">
-        <label for="lastName">Last name</label>
-        <input type="text" class="form-control" id="lastName" placeholder="Last name"
-               [(ngModel)]="user.lastName" name="lastName">
+        <label for="firstName">Username</label>
+        <input type="text"
+               id="username"
+               name="username"
+               class="form-control"
+               [(ngModel)]="user.username"
+               required>
     </div>
     <div class="form-group form-group-sm">
         <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Email"
-               [(ngModel)]="user.email" name="email">
+        <input type="email"
+               id="email"
+               name="email"
+               class="form-control"
+               [(ngModel)]="user.email"
+               required>
     </div>
     <div class="form-group form-group-sm">
-        <label for="birthday">Birthday</label>
-        <input  type="date" class="form-control" id="birthday"
-                [(ngModel)]="user.birthday" name="birthday">
+        <label for="firstName">First name</label>
+        <input type="text"
+               id="firstName"
+               name="firstName"
+               class="form-control"
+               [(ngModel)]="user.firstName"
+               required>
     </div>
-
     <div class="form-group form-group-sm">
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button (click)="goBack()" class="btn btn-default">Cancel</button>
+        <label for="lastName">Last name</label>
+        <input type="text"
+               id="lastName"
+               name="lastName"
+               class="form-control"
+               [(ngModel)]="user.lastName">
     </div>
-
-
-    <!--
     <div class="form-group form-group-sm">
         <label for="country">Country</label>
-        <select class="form-control" required>
-            <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+        <select id="country"
+                name="country"
+                class="form-control"
+                [(ngModel)]="user.countryId"
+                (ngModelChange)="onCountryChange($event)"
+                (focus)="onCountrySelect()">
+            <option value="null"></option>
+            <option *ngIf="!countries && user.country" [value]="user.country.id">{{ user.country.name }}</option>
+            <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
         </select>
     </div>
-    -->
+    <div class="form-group form-group-sm">
+        <label for="state">State</label>
+        <select id="state"
+                name="state"
+                class="form-control"
+                [(ngModel)]="user.stateId"
+                (ngModelChange)="onStateChange($event)"
+                (focus)="onStateSelect(user.countryId)"
+                [disabled]="user.countryId == null || user.countryId == 'null'"> <!-- TODO: Check the country select instead of the model -->
+            <option value="null"></option>
+            <option *ngIf="!states && user.state" [value]="user.state.id">{{ user.state.name }}</option>
+            <option *ngFor="let state of states" [value]="state.id">{{ state.name }}</option>
+        </select>
+    </div>
+    <div class="form-group form-group-sm">
+        <label for="city">City</label>
+        <select id="city"
+                name="city"
+                class="form-control"
+                [(ngModel)]="user.cityId"
+                (focus)="onCitySelect(user.stateId)"
+                [disabled]="user.stateId == null || user.stateId == 'null'">
+            <option value="null"></option>
+            <option *ngIf="!cities && user.city" [value]="user.city.id">{{ user.city.name }}</option>
+            <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+        </select>
+    </div>
+    <div class="form-group form-group-sm">
+        <label for="language">Language</label>
+        <select id="language"
+                name="language"
+                class="form-control"
+                [(ngModel)]="user.languageId">
+            <option value="null"></option>
+        </select>
+    </div>
+    <div class="form-group form-group-sm">
+        <label for="birthAt">Birth at</label>
+        <input type="text"
+               id="birthAt"
+               name="birthAt"
+               class="form-control"
+               [(ngModel)]="user.birthAt">
+    </div>
+    <div class="form-group form-group-sm">
+        <label for="createdAt">Created at</label>
+        <input type="text"
+               id="createdAt"
+               name="createdAt"
+               class="form-control"
+               value="{{ user.createdAt }}"
+               disabled
+               required>
+    </div>
+    <div class="form-group form-group-sm">
+        <label for="updatedAt">Updated at</label>
+        <input type="text"
+               id="updatedAt"
+               name="updatedAt"
+               class="form-control"
+               value="{{ user.updatedAt }}"
+               disabled
+               required>
+    </div>
+    <div class="form-group form-group-sm">
+        <button type="submit"
+                class="btn btn-primary"
+                [disabled]="!userEditForm.valid">Submit</button>
+        <button (click)="goBack()" class="btn btn-default">Cancel</button>
+    </div>
 </form>
 
 
