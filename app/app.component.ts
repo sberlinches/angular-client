@@ -4,6 +4,9 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/route
 import './rxjs-operators';
 // Services
 import { UserService } from "./user/services/user.service";
+import { CountryService } from "./country/services/country.service";
+import { StateService } from "./state/services/state.service";
+import { CityService } from "./city/services/city.service";
 import { StatusService } from './todo/services/status.service';
 import { TodoService } from './todo/services/todo.service';
 // Components
@@ -22,6 +25,9 @@ import { TodoComponent } from './todo/components/todo.component';
     providers: [
         ROUTER_PROVIDERS,
         UserService,
+        CountryService,
+        StateService,
+        CityService,
         StatusService,
         TodoService
     ]
