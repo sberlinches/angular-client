@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated'; // TODO: Changes to the new router component
-import { NgForm } from '@angular/common';
+//import { NgForm } from '@angular/common';
 
 import { UserService } from './../services/user.service';
 import { CountryService } from './../../country/services/country.service';
@@ -18,6 +18,7 @@ import { CityModel } from './../../city/models/city.model';
 
 export class UserEditComponent {
 
+    submitted: boolean = false;
     errorMessage: string;
     user: UserModel;
     countries: CountryModel[];
@@ -108,8 +109,17 @@ export class UserEditComponent {
             );
     }
 
-    //submitted = false;
-    //onSubmit() { this.submitted = true; }
+    /*
+     *
+     */
+    onSubmit() {
+        this.submitted = true;
+        console.log('submit');
+    }
+
+    goBack() {
+        window.history.back();
+    }
 
 
     // TODO: Remove this when we're done

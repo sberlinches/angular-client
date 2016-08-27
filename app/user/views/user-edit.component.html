@@ -1,6 +1,6 @@
 {{ diagnostic }}
 
-<form #userEditForm="ngForm" *ngIf="user">
+<form #userEditForm="ngForm" *ngIf="user" (ngSubmit)="onSubmit()">
 
     <div class="page-header">
         <h2>{{ user.fullName }}</h2>
@@ -131,8 +131,10 @@
     <div class="form-group form-group-sm">
         <button type="submit"
                 class="btn btn-primary"
-                [disabled]="!userEditForm.valid">Submit</button>
-        <button (click)="goBack()" class="btn btn-default">Cancel</button>
+                [disabled]="submitted || !userEditForm.valid">Submit</button>
+        <button type="button"
+                class="btn btn-default"
+                (click)="goBack()">Cancel</button>
     </div>
 </form>
 
