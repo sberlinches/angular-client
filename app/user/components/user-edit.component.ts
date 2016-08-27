@@ -18,6 +18,7 @@ import { CityModel } from './../../city/models/city.model';
 
 export class UserEditComponent {
 
+    userId: number = +this.routeParams.get('id');
     submitted: boolean = false;
     errorMessage: string;
     user: UserModel;
@@ -33,8 +34,7 @@ export class UserEditComponent {
     ) {}
 
     ngOnInit() {
-        var userId = +this.routeParams.get('id');
-        this.getUser(userId);
+        this.getUser(this.userId);
     }
 
     /*
@@ -112,9 +112,20 @@ export class UserEditComponent {
     /*
      *
      */
-    onSubmit() {
+    onSubmit(form) {
         this.submitted = true;
-        console.log('submit');
+
+        if (form.valid) {
+            this.userService
+                .updateUser(this.userId, form.value) // TODO: Get only the modified fields
+                .subscribe(
+                    user => {
+                        this.submitted = false;
+                        window.history.back();
+                    },
+                    error => this.errorMessage = <any>error
+                );
+        }
     }
 
     goBack() {

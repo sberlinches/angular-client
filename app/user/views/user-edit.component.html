@@ -1,6 +1,6 @@
 {{ diagnostic }}
 
-<form #userEditForm="ngForm" *ngIf="user" (ngSubmit)="onSubmit()">
+<form #userEditForm="ngForm" *ngIf="user" (ngSubmit)="onSubmit(userEditForm)">
 
     <div class="page-header">
         <h2>{{ user.fullName }}</h2>

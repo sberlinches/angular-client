@@ -1,42 +1,47 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 // Services
-import { LoggerService } from './../../shared/services/logger.service';
+//import { LoggerService } from './../../shared/services/logger.service';
 // Models
 import { UserModel } from '../models/user.model';
 // Mocks(DB data)
 //import { UserMock } from '../mocks/user.mock';
 
+import 'rxjs/add/operator/toPromise';
+
 @Injectable()
 export class UserService {
 
+    // TODO: External config file
     private domainUrl = 'https://localhost:3443';
-    private UsersUrl = this.domainUrl + '/api/users/';
-    
+    private usersUrl = this.domainUrl + '/api/users/';
+    private headers = new Headers({'Content-Type': 'application/json'});
+
+    // TODO: External module
     private extractData(response: Response) {
         let body = response.json();
         return body.data || { };
     }
 
+    // TODO: External module
     private handleError(error: any) {
-        // In a real world app, we might use a remote logging infrastructure
-        // We'd also dig deeper into the error to get a better message
         let errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error(errMsg); // log to console instead
+        console.error(errMsg);
         return Observable.throw(errMsg);
     }
 
     constructor(
-        private http: Http,
-        private loggerService: LoggerService
+        private http: Http
+        // TODO: Logger service
+        //private loggerService: LoggerService
     ) {}
 
     // Observable
     getUsers(): Observable<UserModel[]> {
         return this.http
-            .get(this.UsersUrl)
+            .get(this.usersUrl)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -49,7 +54,7 @@ export class UserService {
 
     getUser(id: number): Observable<UserModel> {
         return this.http
-            .get(this.UsersUrl + id)
+            .get(this.usersUrl + id)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -62,4 +67,16 @@ export class UserService {
             users => users.filter(user => user.id === id)[0]
         );
     }*/
+
+    updateUser(id: number, data: any): Observable<UserModel> {
+
+        let url = this.usersUrl + id;
+        let body = JSON.stringify(data);
+        let options = { headers: this.headers };
+
+        return this.http
+            .patch(url, body, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
 }
