@@ -1,9 +1,10 @@
 export class DateFunctions {
 
     /**
+     * Difference in milliseconds between two given dates.
      *
-     * @param dateA
-     * @param dateB
+     * @param dateA SimpleDateFormat <yyyy-MM-dd'T'HH:mm:ss'Z'>
+     * @param dateB SimpleDateFormat <yyyy-MM-dd'T'HH:mm:ss'Z'>
      * @returns {number}
      */
     diffBetween(dateA: Date, dateB: Date) {
@@ -15,9 +16,10 @@ export class DateFunctions {
     }
 
     /**
+     * Conversion from milliseconds to the given format.
      *
      * @param milliseconds
-     * @param format
+     * @param format millisecond(default), second, minute, hour, day, week, month, year
      * @returns {number}
      */
     millisecondsTo(milliseconds: number, format: string) {
@@ -25,6 +27,9 @@ export class DateFunctions {
         var result: number;
 
         switch (format) {
+            case 'millisecond':
+                result = milliseconds;
+                break;
             case 'second':
                 result = milliseconds / 1000;
                 break;

@@ -12,12 +12,21 @@ export class TimeBetweenPipe {
         private date: DateFunctions
     ) {}
 
+    /**
+     * Calculates the difference between two dates.
+     * Optionally, can be selected the return format.
+     *
+     * @param valueA SimpleDateFormat <yyyy-MM-dd'T'HH:mm:ss'Z'>
+     * @param valueB SimpleDateFormat <yyyy-MM-dd'T'HH:mm:ss'Z'>
+     * @param format millisecond(default), second, minute, hour, day, week, month, year
+     * @returns {number}
+     */
     transform(valueA: string, valueB: string, format: string) {
 
         if(valueA && valueB) {
-            var dateA           = new Date(valueA);
-            var dateB           = new Date(valueB);
-            var milliseconds    = this.date.diffBetween(dateA, dateB);
+            let dateA           = new Date(valueA);
+            let dateB           = new Date(valueB);
+            let milliseconds    = this.date.diffBetween(dateA, dateB);
 
             return this.date.millisecondsTo(milliseconds, format);
         }
