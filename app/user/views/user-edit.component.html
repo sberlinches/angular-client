@@ -54,7 +54,7 @@
     <div class="form-group form-group-sm">
         <label for="country">Country</label>
         <select id="country"
-                name="country"
+                name="countryId"
                 class="form-control"
                 [(ngModel)]="user.countryId"
                 (ngModelChange)="onCountryChange($event)"
@@ -67,7 +67,7 @@
     <div class="form-group form-group-sm">
         <label for="state">State</label>
         <select id="state"
-                name="state"
+                name="stateId"
                 class="form-control"
                 [(ngModel)]="user.stateId"
                 (ngModelChange)="onStateChange($event)"
@@ -81,7 +81,7 @@
     <div class="form-group form-group-sm">
         <label for="city">City</label>
         <select id="city"
-                name="city"
+                name="cityId"
                 class="form-control"
                 [(ngModel)]="user.cityId"
                 (focus)="onCitySelect(user.stateId)"
