@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { RouteParams } from '@angular/router-deprecated'; // TODO: Changes to the new router component
-//import { NgForm } from '@angular/common';
-
-import { UserService } from './../services/user.service';
-import { CountryService } from './../../country/services/country.service';
-import { StateService } from './../../state/services/state.service';
-
+import { ActivatedRoute, Params } from '@angular/router';
+// Models
 import { UserModel } from './../models/user.model';
 import { CountryModel } from './../../country/models/country.model';
 import { StateModel } from './../../state/models/state.model';
 import { CityModel } from './../../city/models/city.model';
+// Services
+import { UserService } from './../services/user.service';
+import { CountryService } from './../../country/services/country.service';
+import { StateService } from './../../state/services/state.service';
 
 @Component({
     selector: 'user-edit',
@@ -18,7 +17,7 @@ import { CityModel } from './../../city/models/city.model';
 
 export class UserEditComponent {
 
-    userId: number = +this.routeParams.get('id');
+    userId: number;
     submitted: boolean = false;
     errorMessage: string;
     user: UserModel;
@@ -27,13 +26,19 @@ export class UserEditComponent {
     cities: CityModel[];
 
     constructor(
-        private routeParams: RouteParams,
+        private route: ActivatedRoute,
         private userService: UserService,
         private countryService: CountryService,
         private stateService: StateService
-    ) {}
+    ) {
 
-    ngOnInit() {
+        this.route.params.forEach((params: Params) => {
+            this.userId = +params['id'];
+        });
+
+    }
+
+    ngOnInit(): void {
         this.getUser(this.userId);
     }
 
@@ -42,26 +47,26 @@ export class UserEditComponent {
      * 1. Loads the selectors data when they are requested (Until then they're only filled with the selected value)
      * 2. Reload the selectors data when the parent changes
      */
-    onCountrySelect() {
+    onCountrySelect(): void {
         if(!this.countries) this.getCountries();
     }
 
-    onStateSelect(countryId: number) {
+    onStateSelect(countryId: number): void {
         if(!this.states) this.getStatesByCountry(countryId);
     }
 
-    onCitySelect(stateId: number) {
+    onCitySelect(stateId: number): void {
         if(!this.cities) this.getCitiesByState(stateId);
     }
 
-    onCountryChange(countryId: any) { // TODO: type number
+    onCountryChange(countryId: any): void { // TODO: type number
         // TODO: Improve this dammit condition
         if(countryId != null && countryId != "null") this.getStatesByCountry(countryId);
         this.user.stateId = null;
         this.user.cityId = null;
     }
 
-    onStateChange(stateId: any) { // TODO: type number
+    onStateChange(stateId: any): void { // TODO: type number
         // TODO: Improve this dammit condition
         if(stateId != null && stateId != "null") this.getCitiesByState(stateId);
         this.user.cityId = null;
@@ -70,7 +75,7 @@ export class UserEditComponent {
     /*
      * Getters
      */
-    getUser(userId: number) {
+    getUser(userId: number): void {
         this.userService
             .getUser(userId)
             .subscribe(
@@ -79,7 +84,7 @@ export class UserEditComponent {
             );
     }
 
-    getCountries() {
+    getCountries(): void {
         console.log('gimme countries');
         this.countryService
             .getCountries()
@@ -89,7 +94,7 @@ export class UserEditComponent {
             );
     }
 
-    getStatesByCountry(countryId: number) {
+    getStatesByCountry(countryId: number): void {
         console.log('gimme states');
         this.countryService
             .getStatesByCountry(countryId)
@@ -99,7 +104,7 @@ export class UserEditComponent {
             );
     }
 
-    getCitiesByState(stateId: number) {
+    getCitiesByState(stateId: number): void {
         console.log('gimme cites');
         this.stateService
             .getCitiesByState(stateId)
@@ -112,7 +117,7 @@ export class UserEditComponent {
     /*
      *
      */
-    onSubmit(form) {
+    onSubmit(form): void {
         this.submitted = true;
 
         if (form.valid) {
@@ -128,7 +133,7 @@ export class UserEditComponent {
         }
     }
 
-    goBack() {
+    goBack(): void {
         window.history.back();
     }
 

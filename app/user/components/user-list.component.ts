@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { Router } from '@angular/router';
 import { I18nPluralPipe, NgLocalization } from "@angular/common";
-// Services
-import { UserService } from './../services/user.service';
 // Models
 import { UserModel } from './../models/user.model';
-// Components
-import { UserDetailComponent } from './user-detail.component';
-// Pipes
-import { TimeBetweenPipe } from './../../shared/pipes/timeBetween.pipe';
+// Services
+import { UserService } from './../services/user.service';
 // Functions
 import { DateFunctions } from './../../shared/functions/date.functions';
+// Pipes
+import { TimeBetweenPipe } from './../../shared/pipes/timeBetween.pipe';
 
 class TimeLocalization extends NgLocalization {
     getPluralCategory(value: any) {
+        if(value < 0) {
+            return '<0';
+        }
         if(value > 1) {
-            return 'other';
+            return '>1';
         }
     }
 }
@@ -23,10 +24,6 @@ class TimeLocalization extends NgLocalization {
 @Component({
     selector: 'user-list',
     templateUrl: 'app/user/views/user-list.component.html',
-    directives: [
-        ROUTER_DIRECTIVES,
-        UserDetailComponent
-    ],
     pipes: [
         I18nPluralPipe,
         TimeBetweenPipe
@@ -39,6 +36,13 @@ class TimeLocalization extends NgLocalization {
 
 export class UserListComponent implements OnInit {
 
+/*
+QUE SESTO!
+
+    @Input()
+
+*/
+
     errorMessage: string;
     users: UserModel[];
     selectedUser: UserModel;
@@ -46,9 +50,11 @@ export class UserListComponent implements OnInit {
     ageFormat: string = 'year';
     // TODO: External config file
     timeMapping: any = {
+        '<0': '# years',
+        '=-1': '# year',
         '=0': 'Less than a year',
         '=1': '# year',
-        'other': '# years'
+        '>1': '# years'
     };
 
     constructor(
@@ -56,17 +62,11 @@ export class UserListComponent implements OnInit {
         private userService: UserService
     ) {}
 
-    // When the component is ready
-    ngOnInit() {
+    ngOnInit(): void {
         this.getUsers();
     }
 
-    getUsers() {
-        // Fill the variable with data
-        // Promise
-        /*this.userService.getUsers()
-            .then(users => this.users = users);*/
-        // Observable
+    getUsers(): void {
         this.userService
             .getUsers()
             .subscribe(
@@ -75,11 +75,12 @@ export class UserListComponent implements OnInit {
             );
     }
 
-    onSelect(user: UserModel) {
+    onSelect(user: UserModel): void {
         this.selectedUser = user;
     }
 
-    goToUserEdit() {
-        this.router.navigate(['UserEdit', { id: this.selectedUser.id }]);
+    goToUserEdit(): void {
+        let link = ['/user/edit', this.selectedUser.id];
+        this.router.navigate(link);
     }
 }

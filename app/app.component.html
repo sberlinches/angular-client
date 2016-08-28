@@ -1,11 +1,11 @@
 <div class="page-header">
-    <h1><a [routerLink]="['Dashboard']">Angular 2 - CRUD</a></h1>
+    <h1><a routerLink="/dashboard">Angular 2 - CRUD</a></h1>
 </div>
 
 <ul class="nav nav-tabs" role="navigation">
-    <li role="presentation" class="active"><a [routerLink]="['Dashboard']">Dashboard</a></li>
-    <li><a [routerLink]="['UserList']">Users</a></li>
-    <li><a [routerLink]="['Todo']">TODO</a></li>
+    <li role="presentation" class="active"><a routerLink="/dashboard">Dashboard</a></li>
+    <li><a routerLink="/users">Users</a></li>
+    <!--<li><a routerLink="/todos">TO-DO</a></li>-->
 </ul>
 
 <router-outlet></router-outlet>

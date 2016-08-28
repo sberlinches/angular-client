@@ -1,47 +1,48 @@
-import { Component, OnInit } from '@angular/core';
-import { RouteParams } from '@angular/router-deprecated';
-// Services
-import { UserService } from './../services/user.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 // Models
 import { UserModel } from './../models/user.model';
+// Services
+import { UserService } from './../services/user.service';
 
 @Component({
     selector: 'user-detail',
     templateUrl: 'app/user/views/user-detail.component.html'
 })
 
-export class UserDetailComponent {
+export class UserDetailComponent implements OnInit {
 
     errorMessage: string;
     user: UserModel;
 
     constructor(
-        private userService: UserService,
-        private routeParams: RouteParams
+        private route: ActivatedRoute,
+        private userService: UserService
     ) {}
 
-    // When the component is ready
-    ngOnInit() {
+    ngOnInit(): void {
         this.getUser();
     }
 
-    getUser() {
-        // Get params from the route
-        let id = +this.routeParams.get('id');
-        // Fill the variable with data
-        // Promise
-        /*this.userService.getUser(id)
-            .then(user => this.user = user)*/
-        // Observable
-        this.userService
-            .getUser(id)
-            .subscribe(
-                user => this.user = user,
-                error => this.errorMessage = <any>error
-            );
+    getUser(): void {
+
+        this.route.params.forEach((params: Params) => {
+            let id = +params['id'];
+
+
+            this.userService
+                .getUser(id)
+                .subscribe(
+                    user => this.user = user,
+                    error => this.errorMessage = <any>error
+                );
+
+        });
+
+
     }
 
-    goBack() {
+    goBack(): void {
         window.history.back();
     }
 }

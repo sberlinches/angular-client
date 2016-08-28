@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-// Services
-//import { LoggerService } from './../../shared/services/logger.service';
 // Models
 import { UserModel } from '../models/user.model';
-// Mocks(DB data)
-//import { UserMock } from '../mocks/user.mock';
-
-import 'rxjs/add/operator/toPromise';
+// Services
+//import { LoggerService } from './../../shared/services/logger.service';
 
 @Injectable()
 export class UserService {
 
     // TODO: External config file
+    //let url = `${this.heroesUrl}/${id}`;
     private domainUrl = 'https://localhost:3443';
     private usersUrl = this.domainUrl + '/api/users/';
     private headers = new Headers({'Content-Type': 'application/json'});
@@ -46,27 +43,12 @@ export class UserService {
             .catch(this.handleError);
     }
 
-    // Promise
-    /*getUsers() {
-        this.loggerService.log(`Users in DB: ${UserMock.length}`);
-        return Promise.resolve(UserMock);
-    }*/
-
     getUser(id: number): Observable<UserModel> {
         return this.http
             .get(this.usersUrl + id)
             .map(this.extractData)
             .catch(this.handleError);
     }
-
-    // Promise
-    /*getUser(id: number) {
-        this.loggerService.log(`User ID: ${id}`);
-
-        return Promise.resolve(UserMock).then(
-            users => users.filter(user => user.id === id)[0]
-        );
-    }*/
 
     updateUser(id: number, data: any): Observable<UserModel> {
 
