@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
-import {I18nPluralPipe, NgLocalization} from "@angular/common";
+import { I18nPluralPipe, NgLocalization } from "@angular/common";
 // Services
 import { UserService } from './../services/user.service';
 // Models
@@ -44,7 +44,9 @@ export class UserListComponent implements OnInit {
     selectedUser: UserModel;
     todayDate: Date = new Date();
     ageFormat: string = 'year';
+    // TODO: External config file
     timeMapping: any = {
+        '=0': 'Less than a year',
         '=1': '# year',
         'other': '# years'
     };
