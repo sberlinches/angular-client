@@ -8,7 +8,7 @@
 
     <div class="form-group form-group-sm">
         <label for="id">ID</label>
-        <input type="text"
+        <input type="number"
                id="id"
                name="id"
                class="form-control"
@@ -102,29 +102,30 @@
     </div>
     <div class="form-group form-group-sm">
         <label for="birthAt">Birth at</label>
-        <input type="text"
+        <input type="date"
                id="birthAt"
                name="birthAt"
                class="form-control"
-               [(ngModel)]="user.birthAt">
+               [ngModel]="user.birthAt | date: 'y-MM-dd'"
+               (ngModelChange)="user.birthAt = $event">
     </div>
     <div class="form-group form-group-sm">
         <label for="createdAt">Created at</label>
-        <input type="text"
+        <input type="datetime-local"
                id="createdAt"
                name="createdAt"
                class="form-control"
-               value="{{ user.createdAt }}"
+               value="{{ user.createdAt | date: 'y-MM-ddTHH:mm:ss' }}"
                disabled
                required>
     </div>
     <div class="form-group form-group-sm">
         <label for="updatedAt">Updated at</label>
-        <input type="text"
+        <input type="datetime-local"
                id="updatedAt"
                name="updatedAt"
                class="form-control"
-               value="{{ user.updatedAt }}"
+               value="{{ user.updatedAt | date: 'y-MM-ddTHH:mm:ss' }}"
                disabled
                required>
     </div>
