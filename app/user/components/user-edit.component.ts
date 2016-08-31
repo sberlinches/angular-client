@@ -24,6 +24,7 @@ export class UserEditComponent {
     countries: CountryModel[];
     states: StateModel[];
     cities: CityModel[];
+    todayDate: Date = new Date();
 
     constructor(
         private route: ActivatedRoute,

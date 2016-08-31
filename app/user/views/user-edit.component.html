@@ -17,12 +17,14 @@
                required>
     </div>
     <div class="form-group form-group-sm">
-        <label for="firstName">Username</label>
+        <label for="username">Username</label>
         <input type="text"
                id="username"
                name="username"
                class="form-control"
                [(ngModel)]="user.username"
+               minlength="2"
+               maxlength="30"
                required>
     </div>
     <div class="form-group form-group-sm">
@@ -32,6 +34,8 @@
                name="email"
                class="form-control"
                [(ngModel)]="user.email"
+               minlength="3"
+               maxlength="254"
                required>
     </div>
     <div class="form-group form-group-sm">
@@ -41,6 +45,8 @@
                name="firstName"
                class="form-control"
                [(ngModel)]="user.firstName"
+               minlength="2"
+               maxlength="30"
                required>
     </div>
     <div class="form-group form-group-sm">
@@ -49,7 +55,9 @@
                id="lastName"
                name="lastName"
                class="form-control"
-               [(ngModel)]="user.lastName">
+               [(ngModel)]="user.lastName"
+               minlength="2"
+               maxlength="30">
     </div>
     <div class="form-group form-group-sm">
         <label for="country">Country</label>
@@ -85,7 +93,7 @@
                 class="form-control"
                 [(ngModel)]="user.cityId"
                 (focus)="onCitySelect(user.stateId)"
-                [disabled]="user.stateId == null || user.stateId == 'null'">
+                [disabled]="user.stateId == null || user.stateId == 'null'"> <!-- TODO: Check the state select instead of the model -->
             <option value="null"></option>
             <option *ngIf="!cities && user.city" [value]="user.city.id">{{ user.city.name }}</option>
             <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
@@ -107,7 +115,8 @@
                name="birthAt"
                class="form-control"
                [ngModel]="user.birthAt | date: 'y-MM-dd'"
-               (ngModelChange)="user.birthAt = $event">
+               (ngModelChange)="user.birthAt = $event"
+               max="{{ todayDate | date: 'y-MM-dd' }}">
     </div>
     <div class="form-group form-group-sm">
         <label for="createdAt">Created at</label>
