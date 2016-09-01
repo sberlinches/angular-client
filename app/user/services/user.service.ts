@@ -3,8 +3,6 @@ import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 // Models
 import { UserModel } from '../models/user.model';
-// Services
-//import { LoggerService } from './../../shared/services/logger.service';
 
 @Injectable()
 export class UserService {
@@ -31,8 +29,6 @@ export class UserService {
 
     constructor(
         private http: Http
-        // TODO: Logger service
-        //private loggerService: LoggerService
     ) {}
 
     // Observable
