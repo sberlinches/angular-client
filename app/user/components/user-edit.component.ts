@@ -60,16 +60,14 @@ export class UserEditComponent {
         if(!this.cities) this.getCitiesByState(stateId);
     }
 
-    onCountryChange(countryId: any): void { // TODO: type number
-        // TODO: Improve this dammit condition
-        if(countryId != null && countryId != "null") this.getStatesByCountry(countryId);
+    onCountryChange(countryId: number): void {
+        if(countryId) this.getStatesByCountry(countryId);
         this.user.stateId = null;
         this.user.cityId = null;
     }
 
-    onStateChange(stateId: any): void { // TODO: type number
-        // TODO: Improve this dammit condition
-        if(stateId != null && stateId != "null") this.getCitiesByState(stateId);
+    onStateChange(stateId: number): void {
+        if(stateId) this.getCitiesByState(stateId);
         this.user.cityId = null;
     }
 
@@ -86,7 +84,6 @@ export class UserEditComponent {
     }
 
     getCountries(): void {
-        console.log('gimme countries');
         this.countryService
             .getCountries()
             .subscribe(
@@ -96,7 +93,6 @@ export class UserEditComponent {
     }
 
     getStatesByCountry(countryId: number): void {
-        console.log('gimme states');
         this.countryService
             .getStatesByCountry(countryId)
             .subscribe(
@@ -106,7 +102,6 @@ export class UserEditComponent {
     }
 
     getCitiesByState(stateId: number): void {
-        console.log('gimme cites');
         this.stateService
             .getCitiesByState(stateId)
             .subscribe(
@@ -137,7 +132,6 @@ export class UserEditComponent {
     goBack(): void {
         window.history.back();
     }
-
 
     // TODO: Remove this when we're done
     get diagnostic() {

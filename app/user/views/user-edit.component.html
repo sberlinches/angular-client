@@ -12,7 +12,7 @@
                id="id"
                name="id"
                class="form-control"
-               value="{{ user.id }}"
+               [ngModel]="user.id"
                disabled
                required>
     </div>
@@ -22,7 +22,8 @@
                id="username"
                name="username"
                class="form-control"
-               [(ngModel)]="user.username"
+               [ngModel]="user.username"
+               (ngModelChange)="user.username = ($event)? $event: null"
                minlength="2"
                maxlength="30"
                required>
@@ -33,7 +34,8 @@
                id="email"
                name="email"
                class="form-control"
-               [(ngModel)]="user.email"
+               [ngModel]="user.email"
+               (ngModelChange)="user.email = ($event)? $event: null"
                minlength="3"
                maxlength="254"
                required>
@@ -44,7 +46,8 @@
                id="firstName"
                name="firstName"
                class="form-control"
-               [(ngModel)]="user.firstName"
+               [ngModel]="user.firstName"
+               (ngModelChange)="user.firstName = ($event)? $event: null"
                minlength="2"
                maxlength="30"
                required>
@@ -55,7 +58,8 @@
                id="lastName"
                name="lastName"
                class="form-control"
-               [(ngModel)]="user.lastName"
+               [ngModel]="user.lastName"
+               (ngModelChange)="user.lastName = ($event)? $event: null"
                minlength="2"
                maxlength="30">
     </div>
@@ -64,12 +68,13 @@
         <select id="country"
                 name="countryId"
                 class="form-control"
-                [(ngModel)]="user.countryId"
+                [ngModel]="user.countryId"
+                (ngModelChange)="user.countryId = ($event)? $event: null"
                 (ngModelChange)="onCountryChange($event)"
                 (focus)="onCountrySelect()">
-            <option value="null"></option>
-            <option *ngIf="!countries && user.country" [value]="user.country.id">{{ user.country.name }}</option>
-            <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+            <option value=""></option>
+            <option *ngIf="!countries && user.country" [ngValue]="user.country.id">{{ user.country.name }}</option>
+            <option *ngFor="let country of countries" [ngValue]="country.id">{{ country.name }}</option>
         </select>
     </div>
     <div class="form-group form-group-sm">
@@ -77,13 +82,14 @@
         <select id="state"
                 name="stateId"
                 class="form-control"
-                [(ngModel)]="user.stateId"
+                [ngModel]="user.stateId"
+                (ngModelChange)="user.stateId = ($event)? $event: null"
                 (ngModelChange)="onStateChange($event)"
                 (focus)="onStateSelect(user.countryId)"
-                [disabled]="user.countryId == null || user.countryId == 'null'"> <!-- TODO: Check the country select instead of the model -->
-            <option value="null"></option>
-            <option *ngIf="!states && user.state" [value]="user.state.id">{{ user.state.name }}</option>
-            <option *ngFor="let state of states" [value]="state.id">{{ state.name }}</option>
+                [disabled]="user.countryId == null">
+            <option value=""></option>
+            <option *ngIf="!states && user.state" [ngValue]="user.state.id">{{ user.state.name }}</option>
+            <option *ngFor="let state of states" [ngValue]="state.id">{{ state.name }}</option>
         </select>
     </div>
     <div class="form-group form-group-sm">
@@ -91,12 +97,13 @@
         <select id="city"
                 name="cityId"
                 class="form-control"
-                [(ngModel)]="user.cityId"
+                [ngModel]="user.cityId"
+                (ngModelChange)="user.cityId = ($event)? $event: null"
                 (focus)="onCitySelect(user.stateId)"
-                [disabled]="user.stateId == null || user.stateId == 'null'"> <!-- TODO: Check the state select instead of the model -->
-            <option value="null"></option>
-            <option *ngIf="!cities && user.city" [value]="user.city.id">{{ user.city.name }}</option>
-            <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+                [disabled]="user.stateId == null">
+            <option value=""></option>
+            <option *ngIf="!cities && user.city" [ngValue]="user.city.id">{{ user.city.name }}</option>
+            <option *ngFor="let city of cities" [ngValue]="city.id">{{ city.name }}</option>
         </select>
     </div>
     <div class="form-group form-group-sm">
@@ -104,7 +111,8 @@
         <select id="language"
                 name="language"
                 class="form-control"
-                [(ngModel)]="user.languageId">
+                [ngModel]="user.languageId"
+                (ngModelChange)="user.languageId = ($event)? $event: null">
             <option value="null"></option>
         </select>
     </div>
@@ -115,7 +123,7 @@
                name="birthAt"
                class="form-control"
                [ngModel]="user.birthAt | date: 'y-MM-dd'"
-               (ngModelChange)="user.birthAt = $event"
+               (ngModelChange)="user.birthAt = ($event)? $event: null"
                max="{{ todayDate | date: 'y-MM-dd' }}">
     </div>
     <div class="form-group form-group-sm">
@@ -124,7 +132,7 @@
                id="createdAt"
                name="createdAt"
                class="form-control"
-               value="{{ user.createdAt | date: 'y-MM-ddTHH:mm:ss' }}"
+               [ngModel]="user.createdAt | date: 'y-MM-ddTHH:mm:ss'"
                disabled
                required>
     </div>
@@ -134,7 +142,7 @@
                id="updatedAt"
                name="updatedAt"
                class="form-control"
-               value="{{ user.updatedAt | date: 'y-MM-ddTHH:mm:ss' }}"
+               [ngModel]="user.updatedAt | date: 'y-MM-ddTHH:mm:ss'"
                disabled
                required>
     </div>
