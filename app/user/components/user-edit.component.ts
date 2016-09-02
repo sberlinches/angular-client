@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 // Models
 import { UserModel } from './../models/user.model';
@@ -15,7 +15,7 @@ import { StateService } from './../../state/services/state.service';
     templateUrl: 'app/user/views/user-edit.component.html'
 })
 
-export class UserEditComponent {
+export class UserEditComponent implements OnInit {
 
     userId: number;
     submitted: boolean = false;
