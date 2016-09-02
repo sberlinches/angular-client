@@ -7,7 +7,7 @@ export class DateFunctions {
      * @param dateB SimpleDateFormat <yyyy-MM-dd'T'HH:mm:ss'Z'>
      * @returns {number}
      */
-    diffBetween(dateA: Date, dateB: Date) {
+    diffBetween(dateA: Date, dateB: Date): number {
         // Discard the time and time-zone information.
         var utc1 = Date.UTC(dateA.getFullYear(), dateA.getMonth(), dateA.getDate());
         var utc2 = Date.UTC(dateB.getFullYear(), dateB.getMonth(), dateB.getDate());
@@ -19,36 +19,36 @@ export class DateFunctions {
      * Conversion from milliseconds to the given format.
      *
      * @param milliseconds
-     * @param format millisecond(default), second, minute, hour, day, week, month, year
+     * @param format toMilliseconds(default), toSeconds, toMinutes, toHours, toDays, toWeeks, toMonths, toYears
      * @returns {number}
      */
-    millisecondsTo(milliseconds: number, format: string) {
+    millisecondsTo(milliseconds: number, format: string): number {
 
         var result: number;
 
         switch (format) {
-            case 'millisecond':
+            case 'toMilliseconds':
                 result = milliseconds;
                 break;
-            case 'second':
+            case 'toSeconds':
                 result = milliseconds / 1000;
                 break;
-            case 'minute':
+            case 'toMinutes':
                 result = milliseconds / 60000;
                 break;
-            case 'hour':
+            case 'toHours':
                 result = milliseconds / 3600000;
                 break;
-            case 'day':
+            case 'toDays':
                 result = milliseconds / 86400000;
                 break;
-            case 'week':
+            case 'toWeeks':
                 result = milliseconds / 604800000;
                 break;
-            case 'month':
+            case 'toMonths':
                 result = milliseconds / 2627856000;
                 break;
-            case 'year':
+            case 'toYears':
                 result = milliseconds / 31536000000;
                 break;
             default:

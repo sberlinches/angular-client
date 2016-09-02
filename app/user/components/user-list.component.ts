@@ -31,7 +31,7 @@ export class UserListComponent implements OnInit {
     users: UserModel[];
     selectedUser: UserModel;
     todayDate: Date = new Date();
-    ageFormat: string = 'year';
+    ageFormat: string = 'toYears';
     // TODO: External config file
     timeMapping: any = {
         '<0': '# years',

@@ -2,10 +2,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 // Functions
 import { DateFunctions } from './../../shared/functions/date.functions';
 
-@Pipe({
-    name: 'timeBetween'
-})
-
+/*
+ * Calculates the difference between two dates.
+ * Optionally, can be selected the return format.
+ *
+ * Usage:
+ *   valueA | timeBetween: valueB: format
+ * Example:
+ *   {{ '1983-11-12T00:00:00Z' | timeBetween: '2016-11-12T00:00:00Z': 'toYears' }}
+ */
+@Pipe({name: 'timeBetween'})
 export class TimeBetweenPipe implements PipeTransform {
 
     constructor(
@@ -13,12 +19,9 @@ export class TimeBetweenPipe implements PipeTransform {
     ) {}
 
     /**
-     * Calculates the difference between two dates.
-     * Optionally, can be selected the return format.
-     *
      * @param valueA SimpleDateFormat <yyyy-MM-dd'T'HH:mm:ss'Z'>
      * @param valueB SimpleDateFormat <yyyy-MM-dd'T'HH:mm:ss'Z'>
-     * @param format millisecond(default), second, minute, hour, day, week, month, year
+     * @param format toMilliseconds(default), toSeconds, toMinutes, toHours, toDays, toWeeks, toMonths, toYears
      * @returns {number}
      */
     transform(valueA: string, valueB: string, format: string): number {
