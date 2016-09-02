@@ -46,10 +46,10 @@ export class UserService {
             .catch(this.handleError);
     }
 
-    updateUser(id: number, data: any): Observable<UserModel> {
+    updateUser(user: UserModel): Observable<UserModel> {
 
-        let url = this.usersUrl + id;
-        let body = JSON.stringify(data);
+        let url = this.usersUrl + user.id;
+        let body = JSON.stringify(user);
         let options = { headers: this.headers };
 
         return this.http

@@ -113,15 +113,13 @@ export class UserEditComponent implements OnInit {
             );
     }
 
-    /*
-     *
-     */
+    // TODO: updatePartially
     onSubmit(form): void {
         this.submitted = true;
 
         if (form.valid) {
             this.userService
-                .updateUser(this.userId, form.value) // TODO: Get only the modified fields
+                .updateUser(this.user)
                 .subscribe(
                     user => {
                         this.submitted = false;
