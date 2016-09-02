@@ -13,52 +13,6 @@ property which is true only if every contained control is valid.
 <!-- Folks who don't like using the # character can use its canonical alternative, the ref- prefix.
 For example, we can declare the our phone variable using either #phone or ref-phone. -->
 
-<form *ngIf="active" (ngSubmit)="onSubmit()" #newUser="ngForm">
-    <div class="form-group">
-        <label for="firstName">First Name</label>
-        <!--
-        By setting ngControl we create a directive that can tell if the user touched the control, if the value changed,
-        or if the value became invalid.
-        -->
-        <input id="firstName" type="text" class="form-control" required
-               [(ngModel)]="user.firstName"
-               ngControl="firstName"
-               #firstName="ngForm">
-        <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
-            First name is required
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input id="lastName" type="text" class="form-control"
-               [(ngModel)]="user.lastName"
-               ngControl="lastName"
-               #lastName="ngForm">
-        <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
-            Last name is required
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" type="email" class="form-control" required
-               [(ngModel)]="user.email"
-               ngControl="email"
-               #email="ngForm">
-        <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
-            Email is required
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="country">Country</label>
-        <select id="country" class="form-control" required
-                [(ngModel)]="user.country"
-                ngControl="country">
-            <option *ngFor="let country of countries" [value]="country.value">{{ country.title }}</option>
-        </select>
-    </div>
-    <button type="submit" class="btn btn-default" [disabled]="!newUser.form.valid">Submit</button>
-    <button type="button" class="btn btn-default" (click)="newUser()">New user</button>
-</form>
 
 <!-- TODO: Remove this when we're done -->
 {{diagnostic}}

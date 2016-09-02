@@ -1,4 +1,4 @@
-import { Pipe } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 // Functions
 import { DateFunctions } from './../../shared/functions/date.functions';
 
@@ -6,7 +6,7 @@ import { DateFunctions } from './../../shared/functions/date.functions';
     name: 'timeBetween'
 })
 
-export class TimeBetweenPipe {
+export class TimeBetweenPipe implements PipeTransform {
 
     constructor(
         private date: DateFunctions
@@ -21,7 +21,7 @@ export class TimeBetweenPipe {
      * @param format millisecond(default), second, minute, hour, day, week, month, year
      * @returns {number}
      */
-    transform(valueA: string, valueB: string, format: string) {
+    transform(valueA: string, valueB: string, format: string): number {
 
         if(valueA && valueB) {
             let dateA           = new Date(valueA);

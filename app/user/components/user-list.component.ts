@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { I18nPluralPipe, NgLocalization } from "@angular/common";
+import { NgLocalization } from "@angular/common";
 // Models
 import { UserModel } from './../models/user.model';
 // Services
 import { UserService } from './../services/user.service';
-// Functions
-import { DateFunctions } from './../../shared/functions/date.functions';
-// Pipes
-import { TimeBetweenPipe } from './../../shared/pipes/timeBetween.pipe';
 
 class TimeLocalization extends NgLocalization {
     getPluralCategory(value: any) {
@@ -24,24 +20,12 @@ class TimeLocalization extends NgLocalization {
 @Component({
     selector: 'user-list',
     templateUrl: 'app/user/views/user-list.component.html',
-    pipes: [
-        I18nPluralPipe,
-        TimeBetweenPipe
-    ],
     providers: [
-        { provide: NgLocalization, useClass: TimeLocalization },
-        DateFunctions // TimeBetweenPipe dependency
+        { provide: NgLocalization, useClass: TimeLocalization }
     ]
 })
 
 export class UserListComponent implements OnInit {
-
-/*
-QUE SESTO!
-
-    @Input()
-
-*/
 
     errorMessage: string;
     users: UserModel[];

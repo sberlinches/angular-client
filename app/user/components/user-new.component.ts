@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/common';
 // Models
 import { UserModel } from './../models/user.model';
 
@@ -19,7 +18,7 @@ export class UserNewComponent {
         {'value': 'united_states', 'title': 'United States'},
     ];
 
-    user = new UserModel(50, 'name', 'lastname', 'mail@example.com', this.countries[3].value);
+    user = new UserModel('name', 'lastname', 'mail@example.com', this.countries[3].value);
 
     /*
      Angular cannot distinguish between replacing the entire user and clearing the properties programmatically. Angular
@@ -32,7 +31,7 @@ export class UserNewComponent {
      This is a temporary workaround while we await a proper form reset feature.
      */
     newUser() {
-        this.user = new UserModel(51, '', '', '', '');
+
         this.active = false;
         setTimeout(() => this.active = true, 0);
     }

@@ -4,14 +4,14 @@ import { TodoService } from './../services/todo.service';
 // Models
 import { TodoModel } from './../models/todo.model';
 // Components
-import { TodoListComponent } from './todo-list.component';
-import { TodoSelectStatusComponent } from './todo-select-status.component';
-import { TodoInputFilterComponent } from './todo-input-filter.component';
+//import { TodoListComponent } from './todo-list.component';
+//import { TodoSelectStatusComponent } from './todo-select-status.component';
+//import { TodoInputFilterComponent } from './todo-input-filter.component';
 
 @Component({
     selector: 'todo',
     templateUrl: 'app/todo/views/todo.component.html',
-    directives: [TodoListComponent, TodoSelectStatusComponent, TodoInputFilterComponent] // Inject components into this
+    //directives: [TodoListComponent, TodoSelectStatusComponent, TodoInputFilterComponent] // Inject components into this
 })
 
 export class TodoComponent {

@@ -36,10 +36,10 @@ label {
 
 
 /* Forms css */
-.ng-valid {
+.ng-valid[required], .ng-valid.required {
     border-left: 5px solid #42A948;
 }
 
-.ng-invalid {
+.ng-invalid:not(form) {
     border-left: 5px solid #a94442;
 }
