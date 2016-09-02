@@ -1,10 +1,10 @@
-{{ diagnostic }}
-
 <form #userEditForm="ngForm" *ngIf="user" (ngSubmit)="onSubmit(userEditForm)">
 
     <div class="page-header">
-        <h2>{{ user.fullName }}</h2>
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
     </div>
+
+    {{ diagnostic }}
 
     <div class="form-group form-group-sm">
         <label for="id">ID</label>
@@ -73,7 +73,7 @@
                 (ngModelChange)="onCountryChange($event)"
                 (focus)="onCountrySelect()">
             <option value=""></option>
-            <option *ngIf="!countries && user.country" [ngValue]="user.country.id">{{ user.country.name }}</option>
+            <option *ngIf="user.country && !countries.length" [ngValue]="user.country.id">{{ user.country.name }}</option>
             <option *ngFor="let country of countries" [ngValue]="country.id">{{ country.name }}</option>
         </select>
     </div>
@@ -86,9 +86,9 @@
                 (ngModelChange)="user.stateId = ($event)? $event: null"
                 (ngModelChange)="onStateChange($event)"
                 (focus)="onStateSelect(user.countryId)"
-                [disabled]="user.countryId == null">
+                [disabled]="!user.countryId">
             <option value=""></option>
-            <option *ngIf="!states && user.state" [ngValue]="user.state.id">{{ user.state.name }}</option>
+            <option *ngIf="user.state && !states.length" [ngValue]="user.state.id">{{ user.state.name }}</option>
             <option *ngFor="let state of states" [ngValue]="state.id">{{ state.name }}</option>
         </select>
     </div>
@@ -100,22 +100,22 @@
                 [ngModel]="user.cityId"
                 (ngModelChange)="user.cityId = ($event)? $event: null"
                 (focus)="onCitySelect(user.stateId)"
-                [disabled]="user.stateId == null">
+                [disabled]="!user.stateId">
             <option value=""></option>
-            <option *ngIf="!cities && user.city" [ngValue]="user.city.id">{{ user.city.name }}</option>
+            <option *ngIf="user.city && !cities.length" [ngValue]="user.city.id">{{ user.city.name }}</option>
             <option *ngFor="let city of cities" [ngValue]="city.id">{{ city.name }}</option>
         </select>
     </div>
-    <div class="form-group form-group-sm">
+    <!--<div class="form-group form-group-sm">
         <label for="language">Language</label>
         <select id="language"
                 name="language"
                 class="form-control"
                 [ngModel]="user.languageId"
                 (ngModelChange)="user.languageId = ($event)? $event: null">
-            <option value="null"></option>
+            <option value=""></option>
         </select>
-    </div>
+    </div>-->
     <div class="form-group form-group-sm">
         <label for="birthAt">Birth at</label>
         <input type="date"

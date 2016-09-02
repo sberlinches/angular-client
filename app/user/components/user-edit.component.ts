@@ -21,9 +21,9 @@ export class UserEditComponent {
     submitted: boolean = false;
     errorMessage: string;
     user: UserModel;
-    countries: CountryModel[];
-    states: StateModel[];
-    cities: CityModel[];
+    countries: CountryModel[] = [];
+    states: StateModel[] = [];
+    cities: CityModel[] = [];
     todayDate: Date = new Date();
 
     constructor(
@@ -49,26 +49,29 @@ export class UserEditComponent {
      * 2. Reload the selectors data when the parent changes
      */
     onCountrySelect(): void {
-        if(!this.countries) this.getCountries();
+        if(this.countries.length === 0) this.getCountries();
     }
 
     onStateSelect(countryId: number): void {
-        if(!this.states) this.getStatesByCountry(countryId);
+        if(this.states.length === 0) this.getStatesByCountry(countryId);
     }
 
     onCitySelect(stateId: number): void {
-        if(!this.cities) this.getCitiesByState(stateId);
+        if(this.cities.length === 0) this.getCitiesByState(stateId);
     }
 
     onCountryChange(countryId: number): void {
         if(countryId) this.getStatesByCountry(countryId);
         this.user.stateId = null;
         this.user.cityId = null;
+        this.states = [];
+        this.cities = [];
     }
 
     onStateChange(stateId: number): void {
         if(stateId) this.getCitiesByState(stateId);
         this.user.cityId = null;
+        this.cities = [];
     }
 
     /*
