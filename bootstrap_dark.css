@@ -1,0 +1,48 @@
+body,
+a,
+input,
+.form-control,
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover,
+.nav>li>a:focus,
+.nav>li>a:hover {
+    color: #101114;
+}
+
+
+body {
+    background-color: #272b30;
+}
+
+
+
+.page-header {
+    border-color: #1c1e22;
+}
+
+
+.nav-tabs {
+    border-color: #1c1e22;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover,
+.nav>li>a:focus,
+.nav>li>a:hover {
+    border-color: #1c1e22;
+    background-color: transparent;
+}
+
+input,
+.form-control {
+    border-color: #1c1e22;
+    background-color: transparent;
+}
+
+input[disabled],
+.form-control[disabled] {
+    border-color: #1c1e22;
+    background-color: transparent;
+}
