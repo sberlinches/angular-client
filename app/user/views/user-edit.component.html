@@ -1,4 +1,4 @@
-<form #userEditForm="ngForm" *ngIf="user" (ngSubmit)="onSubmit(userEditForm)">
+<form *ngIf="user" #userEditForm="ngForm" (ngSubmit)="onSubmit(userEditForm)">
 
     <div class="page-header">
         <h2>{{ user.firstName }} {{ user.lastName }}</h2>
@@ -155,6 +155,3 @@
                 (click)="goBack()">Cancel</button>
     </div>
 </form>
-
-
-
