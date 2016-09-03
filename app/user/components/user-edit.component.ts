@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 // Models
 import { UserModel } from '../models/user.model';
 // Services
@@ -14,15 +15,16 @@ import { CountryStateCitySelectorHelper } from '../../shared/helpers/country_sta
     templateUrl: 'app/user/views/user-edit.component.html'
 })
 
-export class UserEditComponent extends CountryStateCitySelectorHelper implements OnInit {
+export class UserEditComponent extends CountryStateCitySelectorHelper implements OnInit, OnDestroy {
 
     errorMessage: string;
     submitted: boolean = false;
     user: UserModel;
-    todayDate: Date = new Date();
+    todayDate: Date = new Date(); // TODO: External file
+    private subscription: Subscription;
 
     constructor(
-        private route: ActivatedRoute,
+        private activatedRoute: ActivatedRoute,
         private userService: UserService,
         protected countryService: CountryService,
         protected stateService: StateService
@@ -31,9 +33,14 @@ export class UserEditComponent extends CountryStateCitySelectorHelper implements
     }
 
     ngOnInit(): void {
-        this.route.params.forEach((params: Params) => {
-            this.getUser(+params['id']);
+        this.subscription = this.activatedRoute.params.subscribe(params => {
+            let userId = +params['id'];
+            this.getUser(userId);
         });
+    }
+
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
     }
 
     onCountryChange(countryId: number): void {
@@ -64,7 +71,7 @@ export class UserEditComponent extends CountryStateCitySelectorHelper implements
             this.userService
                 .updateUser(this.user)
                 .subscribe(
-                    user => {
+                    () => {
                         this.submitted = false;
                         window.history.back();
                     },
