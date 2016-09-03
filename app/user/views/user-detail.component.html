@@ -1,31 +1,19 @@
-<form *ngIf="user">
+<div *ngIf="user">
     <div class="page-header">
-        <h2>{{ user.lastName }}, {{ user.firstName }}</h2>
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
     </div>
 
-    <div class="form-group form-group-sm">
-        <label for="id">ID</label>
-        <input class="form-control" id="id" type="text" placeholder="{{ user.id }}" disabled>
-    </div>
-    <div class="form-group form-group-sm">
-        <label for="firstName">First name</label>
-        <input [(ngModel)]="user.firstName" type="text" class="form-control" id="firstName" placeholder="First name">
-    </div>
-    <div class="form-group form-group-sm">
-        <label for="lastName">Last name</label>
-        <input [(ngModel)]="user.lastName" type="text" class="form-control" id="lastName" placeholder="Last name">
-    </div>
-    <div class="form-group form-group-sm">
-        <label for="email">Email</label>
-        <input [(ngModel)]="user.email" type="email" class="form-control" id="email" placeholder="Email">
-    </div>
-    <div class="form-group form-group-sm">
-        <label for="birthday">Birthday</label>
-        <input [(ngModel)]="user.birthday" type="date" class="form-control" id="birthday">
-    </div>
-
-    <div class="form-group form-group-sm">
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button (click)="goBack()" class="btn btn-default">Cancel</button>
-    </div>
-</form>
+    <ul class="list-group">
+        <li class="list-group-item">ID: {{ user.id }}</li>
+        <li class="list-group-item">Username: {{ user.username }}</li>
+        <li class="list-group-item">Email: {{ user.email }}</li>
+        <li class="list-group-item">First name: {{ user.firstName }}</li>
+        <li class="list-group-item">Last name: {{ user.lastName }}</li>
+        <li class="list-group-item">Country: {{ user.country.name }}</li>
+        <li class="list-group-item">State: {{ user.state.name }}</li>
+        <li class="list-group-item">City: {{ user.city.name }}</li>
+        <li class="list-group-item">Birth at: {{ user.birthAt | date: 'y-MM-dd' }}</li>
+        <li class="list-group-item">Created at: {{ user.createdAt | date: 'y-MM-dd HH:mm:ss' }}</li>
+        <li class="list-group-item">Updated at: {{ user.updatedAt | date: 'y-MM-dd HH:mm:ss' }}</li>
+    </ul>
+</div>
