@@ -17,7 +17,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'dashboard',
-        component: DashboardComponent,
+        component: DashboardComponent
     },
     {
         path: 'users',
@@ -40,5 +40,7 @@ const appRoutes: Routes = [
         component: TodoComponent
     }*/
 ];
+
+export const appRoutingProviders: any[] = [];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
