@@ -9,9 +9,9 @@
         <li class="list-group-item">Email: {{ user.email }}</li>
         <li class="list-group-item">First name: {{ user.firstName }}</li>
         <li class="list-group-item">Last name: {{ user.lastName }}</li>
-        <li class="list-group-item">Country: {{ user.country.name }}</li>
-        <li class="list-group-item">State: {{ user.state.name }}</li>
-        <li class="list-group-item">City: {{ user.city.name }}</li>
+        <li class="list-group-item">Country: <span *ngIf="user.country">{{ user.country.name }}</span></li>
+        <li class="list-group-item">State: <span *ngIf="user.state">{{ user.state.name }}</span></li>
+        <li class="list-group-item">City: <span *ngIf="user.city">{{ user.city.name }}</span></li>
         <li class="list-group-item">Birth at: {{ user.birthAt | date: 'y-MM-dd' }}</li>
         <li class="list-group-item">Created at: {{ user.createdAt | date: 'y-MM-dd HH:mm:ss' }}</li>
         <li class="list-group-item">Updated at: {{ user.updatedAt | date: 'y-MM-dd HH:mm:ss' }}</li>
