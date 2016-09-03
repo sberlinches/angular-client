@@ -16,4 +16,8 @@
         <li class="list-group-item">Created at: {{ user.createdAt | date: 'y-MM-dd HH:mm:ss' }}</li>
         <li class="list-group-item">Updated at: {{ user.updatedAt | date: 'y-MM-dd HH:mm:ss' }}</li>
     </ul>
+
+    <button type="button"
+            class="btn btn-default"
+            (click)="goBack()">Go back</button>
 </div>
