@@ -1,114 +1,57 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 // Models
-import { UserModel } from './../models/user.model';
-import { CountryModel } from './../../country/models/country.model';
-import { StateModel } from './../../state/models/state.model';
-import { CityModel } from './../../city/models/city.model';
+import { UserModel } from '../models/user.model';
 // Services
-import { UserService } from './../services/user.service';
-import { CountryService } from './../../country/services/country.service';
-import { StateService } from './../../state/services/state.service';
+import { UserService } from '../services/user.service';
+import { CountryService } from '../../country/services/country.service';
+import { StateService } from '../../state/services/state.service';
+// Helpers
+import { CountryStateCitySelectorHelper } from '../../shared/helpers/country_state_city-selector.helper';
 
 @Component({
     selector: 'user-edit',
     templateUrl: 'app/user/views/user-edit.component.html'
 })
 
-export class UserEditComponent implements OnInit {
+export class UserEditComponent extends CountryStateCitySelectorHelper implements OnInit {
 
-    userId: number;
-    submitted: boolean = false;
     errorMessage: string;
+    submitted: boolean = false;
     user: UserModel;
-    countries: CountryModel[] = [];
-    states: StateModel[] = [];
-    cities: CityModel[] = [];
     todayDate: Date = new Date();
 
     constructor(
         private route: ActivatedRoute,
         private userService: UserService,
-        private countryService: CountryService,
-        private stateService: StateService
+        protected countryService: CountryService,
+        protected stateService: StateService
     ) {
-
-        this.route.params.forEach((params: Params) => {
-            this.userId = +params['id'];
-        });
-
+        super(countryService, stateService);
     }
 
     ngOnInit(): void {
-        this.getUser(this.userId);
-    }
-
-    /*
-     * Country, state and city selector data on demand
-     * 1. Loads the selectors data when they are requested (Until then they're only filled with the selected value)
-     * 2. Reload the selectors data when the parent changes
-     */
-    onCountrySelect(): void {
-        if(this.countries.length === 0) this.getCountries();
-    }
-
-    onStateSelect(countryId: number): void {
-        if(this.states.length === 0) this.getStatesByCountry(countryId);
-    }
-
-    onCitySelect(stateId: number): void {
-        if(this.cities.length === 0) this.getCitiesByState(stateId);
+        this.route.params.forEach((params: Params) => {
+            this.getUser(+params['id']);
+        });
     }
 
     onCountryChange(countryId: number): void {
-        if(countryId) this.getStatesByCountry(countryId);
+        super.onCountryChange(countryId);
         this.user.stateId = null;
         this.user.cityId = null;
-        this.states = [];
-        this.cities = [];
     }
 
     onStateChange(stateId: number): void {
-        if(stateId) this.getCitiesByState(stateId);
+        super.onStateChange(stateId);
         this.user.cityId = null;
-        this.cities = [];
     }
 
-    /*
-     * Getters
-     */
     getUser(userId: number): void {
         this.userService
             .getUser(userId)
             .subscribe(
                 user => this.user = user,
-                error => this.errorMessage = <any>error
-            );
-    }
-
-    getCountries(): void {
-        this.countryService
-            .getCountries()
-            .subscribe(
-                countries => this.countries = countries,
-                error => this.errorMessage = <any>error
-            );
-    }
-
-    getStatesByCountry(countryId: number): void {
-        this.countryService
-            .getStatesByCountry(countryId)
-            .subscribe(
-                states => this.states = states,
-                error => this.errorMessage = <any>error
-            );
-    }
-
-    getCitiesByState(stateId: number): void {
-        this.stateService
-            .getCitiesByState(stateId)
-            .subscribe(
-                cities => this.cities = cities,
                 error => this.errorMessage = <any>error
             );
     }
