@@ -17,11 +17,11 @@ export class UserNewComponent extends CountryStateCitySelectorHelper {
 
     //active = true;
     errorMessage: string;
-    submitted: boolean = false;
     user: UserModel;
     todayDate: Date = new Date(); // TODO: External file
 
     constructor(
+        private userService: UserService,
         protected countryService: CountryService,
         protected stateService: StateService
     ) {
@@ -54,13 +54,21 @@ export class UserNewComponent extends CountryStateCitySelectorHelper {
      This is a temporary workaround while we await a proper form reset feature.
      */
     newUser(): void {
-        this.user = new UserModel('', '', '', '');
+        this.user = new UserModel(null, null, null, null);
         //this.active = false;
         //setTimeout(() => this.active = true, 0);
     }
 
-    onSubmit(): void {
-        alert(JSON.stringify(this.user));
+    onSubmit(form): void {
+        if (form.valid) {
+            this.userService
+                .createUser(this.user)
+                .subscribe(
+                    user => this.user = user,
+                    error => this.errorMessage = <any>error,
+                    () => { this.goBack() }
+                );
+        }
     }
 
     goBack(): void {
