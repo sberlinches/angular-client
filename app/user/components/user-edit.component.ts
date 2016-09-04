@@ -71,11 +71,12 @@ export class UserEditComponent extends CountryStateCitySelectorHelper implements
             this.userService
                 .updateUser(this.user)
                 .subscribe(
+                    user => this.user = user,
+                    error => this.errorMessage = <any>error,
                     () => {
                         this.submitted = false;
-                        window.history.back();
-                    },
-                    error => this.errorMessage = <any>error
+                        this.goBack();
+                    }
                 );
         }
     }
