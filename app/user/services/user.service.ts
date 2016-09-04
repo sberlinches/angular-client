@@ -46,6 +46,18 @@ export class UserService {
             .catch(this.handleError);
     }
 
+    createUser(user: UserModel): Observable<UserModel> {
+
+        let url = this.usersUrl;
+        let body = JSON.stringify(user);
+        let options = { headers: this.headers };
+
+        return this.http
+            .post(url, body, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
     updateUser(user: UserModel): Observable<UserModel> {
 
         let url = this.usersUrl + user.id;
