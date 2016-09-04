@@ -24,16 +24,16 @@ const appRoutes: Routes = [
         component: UserListComponent
     },
     {
+        path: 'user/new',
+        component: UserNewComponent
+    },
+    {
         path: 'user/:id',
         component: UserDetailComponent
     },
     {
         path: 'user/edit/:id',
         component: UserEditComponent
-    },
-    {
-        path: 'user/new',
-        component: UserNewComponent
     },
     /*{
         path: 'todos',
