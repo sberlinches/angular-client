@@ -1,24 +1,47 @@
 import { Component } from '@angular/core';
 // Models
-import { UserModel } from './../models/user.model';
+import { UserModel } from '../models/user.model';
+// Services
+import { UserService } from '../services/user.service';
+import { CountryService } from '../../country/services/country.service';
+import { StateService } from '../../state/services/state.service';
+// Helpers
+import { CountryStateCitySelectorHelper } from '../../shared/helpers/country_state_city-selector.helper';
 
 @Component({
     selector: 'user-new',
     templateUrl: 'app/user/views/user-new.component.html'
 })
 
-export class UserNewComponent {
+export class UserNewComponent extends CountryStateCitySelectorHelper {
 
-    active = true;
+    //active = true;
+    errorMessage: string;
+    submitted: boolean = false;
+    user: UserModel;
+    todayDate: Date = new Date(); // TODO: External file
 
-    countries = [
-        {'value': 'canada', 'title': 'Canada'},
-        {'value': 'japan', 'title': 'Japan'},
-        {'value': 'spain', 'title': 'Spain'},
-        {'value': 'united_states', 'title': 'United States'},
-    ];
+    constructor(
+        protected countryService: CountryService,
+        protected stateService: StateService
+    ) {
+        super(countryService, stateService);
+    }
 
-    user = new UserModel('name', 'lastname', 'mail@example.com', this.countries[3].value);
+    ngOnInit(): void {
+        this.newUser();
+    }
+
+    onCountryChange(countryId: number): void {
+        super.onCountryChange(countryId);
+        this.user.stateId = null;
+        this.user.cityId = null;
+    }
+
+    onStateChange(stateId: number): void {
+        super.onStateChange(stateId);
+        this.user.cityId = null;
+    }
 
     /*
      Angular cannot distinguish between replacing the entire user and clearing the properties programmatically. Angular
@@ -30,14 +53,18 @@ export class UserNewComponent {
 
      This is a temporary workaround while we await a proper form reset feature.
      */
-    newUser() {
-
-        this.active = false;
-        setTimeout(() => this.active = true, 0);
+    newUser(): void {
+        this.user = new UserModel('', '', '', '');
+        //this.active = false;
+        //setTimeout(() => this.active = true, 0);
     }
 
-    onSubmit() {
+    onSubmit(): void {
         alert(JSON.stringify(this.user));
+    }
+
+    goBack(): void {
+        window.history.back();
     }
 
     // TODO: Remove this when we're done
