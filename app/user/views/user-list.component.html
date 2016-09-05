@@ -5,6 +5,7 @@
 <ul>
     <li><a routerLink="/user/new">New user</a></li>
     <li *ngIf="selectedUser"><a (click)="goToUserEdit()">Edit {{ selectedUser.firstName }}</a></li>
+    <li *ngIf="selectedUser"><a (click)="deleteUser()">Delete {{ selectedUser.firstName }}</a></li>
 </ul>
 
 

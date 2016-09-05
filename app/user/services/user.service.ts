@@ -69,4 +69,15 @@ export class UserService {
             .map(this.extractData)
             .catch(this.handleError);
     }
+
+    deleteUser(id: number): any {
+
+        let url = this.usersUrl + id;
+        let options = { headers: this.headers };
+
+        return this.http
+            .delete(url, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
 }

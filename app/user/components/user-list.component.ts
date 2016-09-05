@@ -67,4 +67,15 @@ export class UserListComponent implements OnInit {
         let link = ['/user/edit', this.selectedUser.id];
         this.router.navigate(link);
     }
+
+    deleteUser(): void {
+        let userId: number = this.selectedUser.id;
+        this.userService
+            .deleteUser(userId)
+            .subscribe(
+                users => this.users = users,
+                error => this.errorMessage = <any>error,
+                () => this.getUsers()
+            );
+    }
 }
