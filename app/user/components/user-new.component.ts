@@ -15,7 +15,6 @@ import { CountryStateCitySelectorHelper } from '../../shared/helpers/country_sta
 
 export class UserNewComponent extends CountryStateCitySelectorHelper {
 
-    //active = true;
     errorMessage: string;
     user: UserModel;
     todayDate: Date = new Date(); // TODO: External file
@@ -43,22 +42,11 @@ export class UserNewComponent extends CountryStateCitySelectorHelper {
         this.user.cityId = null;
     }
 
-    /*
-     Angular cannot distinguish between replacing the entire user and clearing the properties programmatically. Angular
-     makes no assumptions and leaves the control in its current, dirty state.
-
-     We'll have to reset the form controls manually with a small trick. We add an active flag to the component,
-     initialized to true. When we add a new user, we toggle active false and then immediately back to true with a quick
-     setTimeout.
-
-     This is a temporary workaround while we await a proper form reset feature.
-     */
     newUser(): void {
         this.user = new UserModel(null, null, null, null);
-        //this.active = false;
-        //setTimeout(() => this.active = true, 0);
     }
 
+    // TODO: Creation in batch "Save and new again"
     onSubmit(form): void {
         if (form.valid) {
             this.userService
