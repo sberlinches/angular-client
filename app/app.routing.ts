@@ -1,6 +1,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 // Components
+import { PageNotFoundComponent } from './shared/components/page-not-found.component';
 import { DashboardComponent } from './dashboard/components/dashboard.component';
 import { UserListComponent } from './user/components/user-list.component';
 import { UserDetailComponent } from './user/components/user-detail.component';
@@ -39,6 +40,10 @@ const appRoutes: Routes = [
         path: 'todos',
         component: TodoComponent
     }*/
+    {
+        path: '**',
+        component: PageNotFoundComponent
+    }
 ];
 
 export const appRoutingProviders: any[] = [];

@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { routing, appRoutingProviders } from './app.routing';
 // Components
 import { AppComponent }  from './app.component';
+import { PageNotFoundComponent } from './shared/components/page-not-found.component';
 import { DashboardComponent } from './dashboard/components/dashboard.component';
 import { UserListComponent } from './user/components/user-list.component';
 import { UserDetailComponent } from './user/components/user-detail.component';
@@ -36,6 +37,7 @@ import { DateFunctions } from './shared/functions/date.functions';
     ],
     declarations: [
         AppComponent,
+        PageNotFoundComponent,
         DashboardComponent,
         UserListComponent,
         UserDetailComponent,
