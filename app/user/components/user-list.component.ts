@@ -73,7 +73,11 @@ export class UserListComponent implements OnInit {
         this.userService
             .deleteUser(userId)
             .subscribe(
-                data => this.getUsers(),
+                data => {
+                    let index = this.users.indexOf(this.selectedUser);
+                    this.users.splice(index, 1);
+                    this.selectedUser = null;
+                },
                 error => this.errorMessage = <any>error
             );
     }
