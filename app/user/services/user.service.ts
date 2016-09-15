@@ -31,7 +31,6 @@ export class UserService {
         private http: Http
     ) {}
 
-    // Observable
     getUsers(): Observable<UserModel[]> {
         return this.http
             .get(this.usersUrl)

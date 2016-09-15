@@ -54,7 +54,7 @@ export class UserListComponent implements OnInit {
         this.userService
             .getUsers()
             .subscribe(
-                users => this.users = users,
+                data => this.users = data,
                 error => this.errorMessage = <any>error
             );
     }
@@ -73,9 +73,8 @@ export class UserListComponent implements OnInit {
         this.userService
             .deleteUser(userId)
             .subscribe(
-                users => this.users = users,
-                error => this.errorMessage = <any>error,
-                () => this.getUsers()
+                data => this.getUsers(),
+                error => this.errorMessage = <any>error
             );
     }
 }

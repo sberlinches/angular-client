@@ -65,17 +65,21 @@ export class UserEditComponent extends CountryStateCitySelectorHelper implements
 
     // TODO: updatePartially
     onSubmit(form): void {
-        this.submitted = true;
-
         if (form.valid) {
+
+            this.submitted = true;
+
             this.userService
                 .updateUser(this.user)
                 .subscribe(
-                    user => this.user = user,
-                    error => this.errorMessage = <any>error,
-                    () => {
+                    data => {
+                        this.user = data;
                         this.submitted = false;
                         this.goBack();
+                    },
+                    error => {
+                        this.errorMessage = <any>error;
+                        this.submitted = false;
                     }
                 );
         }

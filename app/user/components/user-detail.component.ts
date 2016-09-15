@@ -37,7 +37,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
         this.userService
             .getUser(userId)
             .subscribe(
-                user => this.user = user,
+                data => this.user = data,
                 error => this.errorMessage = <any>error
             );
     }

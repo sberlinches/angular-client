@@ -52,9 +52,11 @@ export class UserNewComponent extends CountryStateCitySelectorHelper {
             this.userService
                 .createUser(this.user)
                 .subscribe(
-                    user => this.user = user,
-                    error => this.errorMessage = <any>error,
-                    () => { this.goBack() }
+                    data => {
+                        this.user = data;
+                        this.goBack();
+                    },
+                    error => this.errorMessage = <any>error
                 );
         }
     }
