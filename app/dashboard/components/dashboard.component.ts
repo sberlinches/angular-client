@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-// Models
-import { UserModel } from './../../user/models/user.model';
-// Services
-import { UserService } from './../../user/services/user.service';
 
+import { UserModel } from './../../user/models/user.model';
+import { UserService } from './../../user/services/user.service';
 
 @Component({
     selector: 'dashboard',
@@ -29,13 +27,13 @@ export class DashboardComponent implements OnInit {
         this.userService
             .getUsers()
             .subscribe(
-                users => this.users = users,
+                data => this.users = data,
                 error => this.errorMessage = <any>error
             );
     }
 
     gotoUserDetails(user: UserModel): void {
-        let link = ['/user', user.id];
+        let link = ['/users', user.id];
         this.router.navigate(link);
     }
 }
