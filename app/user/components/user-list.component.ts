@@ -62,6 +62,11 @@ export class UserListComponent implements OnInit {
         this.selectedUser = user;
     }
 
+    goToUserDetail(): void {
+        let link = ['/users', this.selectedUser.id];
+        this.router.navigate(link);
+    }
+
     goToUserEdit(): void {
         let link = ['/users/edit', this.selectedUser.id];
         this.router.navigate(link);
