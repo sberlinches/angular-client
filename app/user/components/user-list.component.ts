@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgLocalization } from "@angular/common";
-// Models
+
 import { UserModel } from './../models/user.model';
-// Services
 import { UserService } from './../services/user.service';
 
 class TimeLocalization extends NgLocalization {
@@ -64,7 +63,7 @@ export class UserListComponent implements OnInit {
     }
 
     goToUserEdit(): void {
-        let link = ['/user/edit', this.selectedUser.id];
+        let link = ['/users/edit', this.selectedUser.id];
         this.router.navigate(link);
     }
 

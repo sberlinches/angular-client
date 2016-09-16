@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-// Models
+
 import { UserModel } from '../models/user.model';
-// Services
 import { UserService } from '../services/user.service';
 import { CountryService } from '../../country/services/country.service';
 import { StateService } from '../../state/services/state.service';
-// Helpers
+
 import { CountryStateCitySelectorHelper } from '../../shared/helpers/country_state_city-selector.helper';
 
 @Component({
