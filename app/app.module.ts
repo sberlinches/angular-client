@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent }  from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 
+import { LoginModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { UserModule } from './user/user.module';
@@ -16,6 +17,7 @@ import { UserModule } from './user/user.module';
         BrowserModule,
         HttpModule,
         routing,
+        LoginModule,
         AdminModule,
         DashboardModule,
         UserModule,

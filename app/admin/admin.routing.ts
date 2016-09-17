@@ -2,18 +2,19 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminComponent } from './components/admin.component';
-
 import { UserComponent } from './../user/components/user.component';
 import { UserListComponent } from './../user/components/user-list.component';
 import { UserDetailComponent } from './../user/components/user-detail.component';
 import { UserEditComponent } from './../user/components/user-edit.component';
 import { UserNewComponent } from './../user/components/user-new.component';
 
+import { AuthGuard } from './../auth/services/auth-guard.service';
+
 const adminRoutes: Routes = [
     {
         path: 'admin',
         component: AdminComponent,
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         children: [
             {
                 path: '',
