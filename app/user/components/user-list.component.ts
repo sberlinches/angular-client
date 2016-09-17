@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgLocalization } from "@angular/common";
 
 import { UserModel } from './../models/user.model';
@@ -42,6 +42,7 @@ export class UserListComponent implements OnInit {
 
     constructor(
         private router: Router,
+        private route: ActivatedRoute,
         private userService: UserService
     ) {}
 
@@ -63,13 +64,15 @@ export class UserListComponent implements OnInit {
     }
 
     goToUserDetail(): void {
-        let link = ['/users', this.selectedUser.id];
-        this.router.navigate(link);
+        let commands = [ this.selectedUser.id ];
+        let extras = { relativeTo: this.route };
+        this.router.navigate(commands, extras);
     }
 
     goToUserEdit(): void {
-        let link = ['/users/edit', this.selectedUser.id];
-        this.router.navigate(link);
+        let commands = [ 'edit', this.selectedUser.id ];
+        let extras = { relativeTo: this.route };
+        this.router.navigate(commands, extras);
     }
 
     deleteUser(): void {
