@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
     }
 
     gotoUserDetails(user: UserModel): void {
-        let link = ['/users', user.id];
-        this.router.navigate(link);
+        let commands = [ '/users', user.id ];
+        this.router.navigate(commands);
     }
 }
