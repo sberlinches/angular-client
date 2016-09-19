@@ -10,6 +10,10 @@ h2{
     font-size: inherit;
 }
 
+.navbar-fixed-fix {
+    margin-top:70px;
+}
+
 .page-header {
     margin-top: 20px;
 }
@@ -23,17 +27,9 @@ label {
     margin-bottom: 0;
 }
 
-/*  */
-.nav>li>a {
-    padding: 5px 10px;
-}
-
-
 .btn {
-    padding: 3px 6px;
     font-size: inherit;
 }
-
 
 /* Forms css */
 .ng-valid:not(form) {

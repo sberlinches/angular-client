@@ -1,12 +1,30 @@
-<div class="page-header">
-    <h1><a routerLink="/dashboard">Angular 2 - CRUD</a></h1>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" routerLink="/dashboard">Angular2</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li *ngIf="authService.isLoggedIn" routerLinkActive="active"><a routerLink="/admin">Admin</a></li>
+                <li routerLinkActive="active"><a routerLink="/dashboard">Dashboard</a></li>
+                <li routerLinkActive="active"><a routerLink="/users">Users</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li *ngIf="!authService.isLoggedIn" routerLinkActive="active"><a routerLink="/login">Log in</a></li>
+                <li *ngIf="authService.isLoggedIn"><a routerLink="/login">Log out</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="navbar-fixed-fix">
+    <router-outlet></router-outlet>
 </div>
-
-<ul class="nav nav-tabs" role="navigation">
-    <li routerLinkActive="active"><a routerLink="/dashboard">Dashboard</a></li>
-    <li routerLinkActive="active"><a routerLink="/admin">Admin</a></li>
-    <li routerLinkActive="active"><a routerLink="/users">Users</a></li>
-    <li routerLinkActive="active"><a routerLink="/login">Login/Logout</a></li>
-</ul>
-
-<router-outlet></router-outlet>
