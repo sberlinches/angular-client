@@ -12,7 +12,7 @@ interface UserInterface {
 export class AuthService {
 
     isLoggedIn: boolean = false;
-    user;
+    user: UserModel;
     redirectUrl: string;
 
     // TODO: External module
