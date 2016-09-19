@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from './../services/auth.service';
+import { AuthService } from '../services/auth.service';
+
+interface UserInterface {
+    username: string,
+    password: string
+}
 
 @Component({
     selector: 'login',
@@ -9,38 +14,35 @@ import { AuthService } from './../services/auth.service';
 
 export class LoginComponent {
 
-    message: string;
+    user: UserInterface = {
+        'username': null,
+        'password': null
+    };
 
     constructor(
         public authService: AuthService,
         public router: Router
-    ) {
-        this.setMessage();
-    }
+    ) {}
 
-    setMessage() {
-        this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
-    }
-
-    login() {
-        this.message = 'Trying to log in ...';
-        this.authService
-            .login()
-            .subscribe(
-                () => {
-                    this.setMessage();
-                    if (this.authService.isLoggedIn) {
-                        // Get the redirect URL from our auth service
-                        // If no redirect has been set, use the default
-                        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/admin';
-                        // Redirect the user
+    onSubmit(form): void {
+        if (form.valid) {
+            this.authService
+                .login(this.user)
+                .subscribe(
+                    data => {
+                        console.log(data);
+                        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/dashboard';
                         this.router.navigate([redirect]);
+                    },
+                    error => {
+                        console.log(error);
                     }
-                });
+                );
+        }
     }
 
-    logout() {
-        this.authService.logout();
-        this.setMessage();
+    // TODO: Remove this when we're done
+    get diagnostic() {
+        return JSON.stringify(this.user);
     }
 }
