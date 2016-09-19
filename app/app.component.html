@@ -19,7 +19,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="!authService.isLoggedIn" routerLinkActive="active"><a routerLink="/login">Log in</a></li>
-                <li *ngIf="authService.isLoggedIn"><a routerLink="/logout">Log out</a></li>
+                <li *ngIf="authService.isLoggedIn"><a routerLink="/logout">Hi {{ authService.user.username }}, Log out</a></li>
             </ul>
         </div>
     </div>

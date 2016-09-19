@@ -12,6 +12,7 @@ interface UserInterface {
 export class AuthService {
 
     isLoggedIn: boolean = false;
+    user;
     redirectUrl: string;
 
     // TODO: External module
@@ -42,7 +43,12 @@ export class AuthService {
             .post(url, body, options)
             .map(this.extractData)
             .catch(this.handleError)
-            .do(data => this.isLoggedIn = true);
+            .do(
+                data => {
+                    this.isLoggedIn = true,
+                    this.user = data
+                }
+            );
     }
 
     logout(): void {
