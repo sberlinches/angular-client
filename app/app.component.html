@@ -13,13 +13,13 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li *ngIf="authService.isLoggedIn" routerLinkActive="active"><a routerLink="/admin">Admin</a></li>
+                <li *ngIf="user" routerLinkActive="active"><a routerLink="/admin">Admin</a></li>
                 <li routerLinkActive="active"><a routerLink="/dashboard">Dashboard</a></li>
                 <li routerLinkActive="active"><a routerLink="/users">Users</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="!authService.isLoggedIn" routerLinkActive="active"><a routerLink="/login">Log in</a></li>
-                <li *ngIf="authService.isLoggedIn"><a routerLink="/logout">Hi {{ authService.user.username }}, Log out</a></li>
+                <li *ngIf="!user" routerLinkActive="active"><a routerLink="/login">Log in</a></li>
+                <li *ngIf="user"><a routerLink="/logout">Hi {{ user.username }}, Log out</a></li>
             </ul>
         </div>
     </div>

@@ -2,17 +2,12 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { UserModel } from '../../user/models/user.model';
-
-interface UserInterface {
-    username: string,
-    password: string
-}
+import { WebStorageService } from '../../shared/services/web-storage.service';
+import { LoginInterface } from '../interfaces/login.interface';
 
 @Injectable()
 export class AuthService {
 
-    isLoggedIn: boolean = false;
-    user: UserModel;
     redirectUrl: string;
 
     // TODO: External module
@@ -30,13 +25,17 @@ export class AuthService {
     }
 
     constructor(
-        private http: Http
+        private http: Http,
+        private webStorageService: WebStorageService
     ) {}
 
-    login(user: UserInterface): Observable<UserModel[]> {
+    login(login: LoginInterface): Observable<UserModel[]> {
 
+        this.logout();
+
+        // TODO: External file
         let url = 'https://localhost:3443/api/auth/login';
-        let body = JSON.stringify(user);
+        let body = JSON.stringify(login);
         let options = { headers: new Headers({'Content-Type': 'application/json'}) };
 
         return this.http
@@ -44,14 +43,11 @@ export class AuthService {
             .map(this.extractData)
             .catch(this.handleError)
             .do(
-                data => {
-                    this.isLoggedIn = true,
-                    this.user = data
-                }
+                data => this.webStorageService.setItem('user', data, login.rememberMe)
             );
     }
 
     logout(): void {
-        this.isLoggedIn = false;
+        this.webStorageService.clear();
     }
 }

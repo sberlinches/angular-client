@@ -17,7 +17,7 @@ export class LogoutComponent {
     }
 
     logout() {
-        this.authService.isLoggedIn = false;
+        this.authService.logout();
         let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/dashboard';
         this.router.navigate([redirect]);
     }
